@@ -1,7 +1,7 @@
 Feature: Application Home
 
-  The application should provide an application home from users start their journey
-  and can access basic information.
+  The application should provide an application home from which users begin their journey.
+  The application home should provide access to some basic information.
 
   Scenario: A new user starts using the application
     Given a new user
