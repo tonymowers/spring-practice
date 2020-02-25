@@ -1,4 +1,4 @@
-![](https://github.com/tonymowers/spring-practice/workflows/.github/workflows/Build/badge.svg)
+![](https://github.com/tonymowers/spring-practice/workflows/workflows/Build%20Test%/badge.svg)
 
 # Spring Boot Practice
 
