@@ -1,3 +1,5 @@
+![](https://github.com/tonymowers/spring-practice/workflows/.github/workflows/Build/badge.svg)
+
 # Spring Boot Practice
 
 A repository for practicing with spring boot.
