@@ -27,9 +27,18 @@ jobs:
     - name: Build and Test with Maven
       run: mvn -B package --file pom.xml
 
-    - name: Build and Push Docker image with Jib
+    # Docker Image Push Develop and Release candidate Branch
+    - name: Push develop or release candidate image to Docker
+      if: github.ref == 'refs/heads/develop' || startsWith (github.ref, 'refs/heads/release' )
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
       run: mvn -B jib:build -Djib.to.auth.username=$DOCKER_USERNAME -Djib.to.auth.password=$DOCKER_TOKEN
 
+    # Docker Image Push Master branch
+    - name: Push master image to Docker
+      if: github.ref == 'refs/heads/master'
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
+      run: mvn -B jib:build -Djib.to.auth.username=$DOCKER_USERNAME -Djib.to.auth.password=$DOCKER_TOKEN -Djib.to.tags=latest
