@@ -29,7 +29,7 @@ jobs:
 
     # Docker Image Push Develop and Release candidate Branch
     - name: Push develop or release candidate image to Docker
-      if: github.ref == 'refs/heads/develop' || startsWith (github.ref, 'refs/heads/release' )
+      if: github.ref == 'refs/heads/develop' || startsWith (github.ref, 'refs/heads/release' ) || startsWith (github.ref, 'refs/heads/hotfix' )
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
