@@ -9,10 +9,10 @@ import static io.cucumber.junit.CucumberOptions.SnippetType.CAMELCASE;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        tags = {"not @pending"},
+        tags = {""},
         plugin = {"pretty", "de.monochromata.cucumber.report.PrettyReports:target/cucumber"},
         features = "classpath:features",
-        strict = true,
+        strict = false,
         snippets = CAMELCASE)
 public class RunCucumberTests {
 

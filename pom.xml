@@ -20,7 +20,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <cucumber.version>5.1.3</cucumber.version>
         <junit.jupiter.version>5.5.1</junit.jupiter.version>
-        <de.monochromata.cucumber>4.0.17</de.monochromata.cucumber>
+        <de.monochromata.cucumber>4.0.26</de.monochromata.cucumber>
         <docker.repository>docker.io/tonymowers/${project.artifactId}</docker.repository>
     </properties>
 
