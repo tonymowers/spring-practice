@@ -6,4 +6,4 @@ Feature: Application Home
   Scenario: A new user starts using the application
     Given a new user
     When the user starts using the application
-    Then the user should be greeted
+    Then the user should be greeted with 'Hello World!'
