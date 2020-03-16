@@ -1,6 +1,7 @@
 Feature: Do Nothing
 
+  @pending
   Scenario: Do Nothing
     Given nothing
-    When noting is done
+    When nothing is done
     Then expect nothing

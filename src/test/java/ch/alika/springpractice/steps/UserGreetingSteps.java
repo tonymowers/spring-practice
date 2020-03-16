@@ -8,9 +8,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.emptyOrNullString;
 import static org.hamcrest.Matchers.not;
+import static org.hamcrest.core.Is.is;
 
 @SpringBootTest(classes = StepsSpringConfiguration.class)
 public class UserGreetingSteps {
+
+    private Home home = new Home();
 
     @Given("a new user")
     public void a_new_user() {
@@ -22,8 +25,12 @@ public class UserGreetingSteps {
 
     }
 
-    @Then("the user should be greeted")
-    public void user_should_be_greeted() {
-        assertThat("Hello!", not(emptyOrNullString()));
+    @Then("the user should be greeted with {string}")
+    public void user_should_be_greeted(String expectedGreeting) {
+        assertThat(home.getGreeting(), is(expectedGreeting));
+    }
+
+    private static class Home {
+        public String getGreeting() { return "Hello World!"; }
     }
 }
