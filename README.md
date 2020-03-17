@@ -12,13 +12,19 @@ mvn spring-boot:run
 
 To use the application open your web browser to  [localhost:8080](http://localhost:8080)
 
+## Develop Frontend
+
+With the backend already running execute:
+```
+./npm start
+```
 
 ## Building and Running Docker Images
 
 ### To Build Docker Image to Local Registry
 
 ```
-mvn compile com.google.cloud.tools:jib-maven-plugin:2.0.0:dockerBuild -Dimage=spring-practice
+mvn compile jib:dockerBuild -Dimage=spring-practice
 ```
 
 ### To Run Docker Image from Local Registry
@@ -34,7 +40,21 @@ The following will publish to docker hub using the maven project version as the 
 mvn clean compile jib:build
 ```
 
-The following will public to docker hub using both the maven project version and 'latest' as the image tags:
+The following will run the docker image from the docker hub repository:
+```
+docker run -p 8080:8080 tony-mowers/spring-practice:<project.version>
+```
+for example:
+```
+docker run -p 8080:8080 tony-mowers/spring-practice:0.4.0-SNAPSHOT
+```
+or
+```
+docker run -p 8080:8080 tony-mowers/spring-practice:latest
+```
+
+The following will publish to docker hub using both the maven project version and 'latest' as the image tags:
 ```
 mvn clean compile jib:build -Djib.to.tags=latest
 ```
+
