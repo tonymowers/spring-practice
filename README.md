@@ -16,6 +16,7 @@ To use the application open your web browser to  [localhost:8080](http://localho
 
 With the backend already running execute:
 ```
+mvn clean package
 ./npm start
 ```
 

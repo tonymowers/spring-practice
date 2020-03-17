@@ -1,4 +1,5 @@
 const path = require('path');
+const target = path.resolve(__dirname, 'target/classes/static');
 
 module.exports = {
     mode: 'development',
@@ -7,7 +8,7 @@ module.exports = {
     },
     entry: './src/frontend/index.ts',
     devServer: {
-        contentBase: path.resolve(__dirname, 'target/classes/static'),
+        contentBase: target,
         port: 9000,
         proxy: {
             '/api': 'http://localhost:8080'
@@ -37,7 +38,7 @@ module.exports = {
     },
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, 'target/classes/static'),
+        path: target,
     },
 
 };

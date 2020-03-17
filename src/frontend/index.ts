@@ -9,7 +9,7 @@ function createGreeting() {
 }
 
 function createImage() {
-    const myIcon: HTMLImageElement = new Image(400, 400);
+    const myIcon: HTMLImageElement = new Image(200, 200);
     myIcon.src = Icon;
     return myIcon;
 }
