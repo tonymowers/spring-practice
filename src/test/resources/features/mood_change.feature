@@ -1,14 +1,13 @@
-@pending
 Feature:  Change My Mood
 
   A person has a range of different moods and they choose which of the moods they want to currently have.
 
   Background: Setup the range of available moods
-    Given A person has the following possible moods:
-      | id  | name   | default |
-      | 0   | happy  | yes     |
-      | 1   | sad    | no      |
-
+    Given the following possible moods:
+      | id  | name   |
+      | 0   | happy  |
+      | 1   | sad    |
+    And "happy" is the default mood
 
   Scenario: I am in my default mood
     Given I have done nothing about my mood
