@@ -2,10 +2,11 @@ package ch.alika.springpractice.domain;
 
 import java.util.List;
 
-public interface IMoodController {
-    void setPossibleMoods(List<Mood> moods);
+public interface IMoodCenter {
 
-    List<Mood> getPossibleMoods();
+    void setAvailableMoods(List<Mood> moods);
+
+    List<Mood> getAvailableMoods();
 
     Mood getMoodById(int id);
 

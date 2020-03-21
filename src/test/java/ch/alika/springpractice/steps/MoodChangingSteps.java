@@ -1,7 +1,8 @@
 package ch.alika.springpractice.steps;
 
-import ch.alika.springpractice.domain.IMoodController;
+import ch.alika.springpractice.domain.IMoodCenter;
 import ch.alika.springpractice.domain.Mood;
+import ch.alika.springpractice.domain.Moods;
 import ch.alika.springpractice.domain.ObjectNotFoundException;
 import ch.alika.springpractice.support.MoodChangingHelper;
 import io.cucumber.java.DataTableType;
@@ -18,7 +19,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
 public class MoodChangingSteps {
-    IMoodController moodController;
+    IMoodCenter moodController;
 
     public MoodChangingSteps(MoodChangingHelper helper) {
         moodController = helper.getMoodController();
@@ -26,7 +27,7 @@ public class MoodChangingSteps {
 
     @DataTableType
     public Mood moodEntry(Map<String, String> entry) {
-        return new Mood(Integer.parseInt(entry.get("id")), entry.get("name"));
+        return Moods.createSimpleMood(Integer.parseInt(entry.get("id")), entry.get("name"));
     }
 
     @ParameterType("\"(.*)\"")
@@ -36,7 +37,7 @@ public class MoodChangingSteps {
 
     @Given("the following possible moods:")
     public void theFollowingPossibleMoods(List<Mood> moods) {
-        moodController.setPossibleMoods(moods);
+        moodController.setAvailableMoods(moods);
     }
 
     @When("{mood} is the default mood")
@@ -65,8 +66,9 @@ public class MoodChangingSteps {
 
 
     private Mood getMoodByName(String name) {
-        Optional<Mood> mood = moodController.getPossibleMoods().stream().filter(m -> m.getName().equals(name)).findFirst();
+        Optional<Mood> mood = moodController.getAvailableMoods().stream().filter(m -> m.getName().equals(name)).findFirst();
         return mood.orElseThrow(() -> new ObjectNotFoundException(String.format("unable to find Mood with name = %s",name)));
     }
+
 
 }

@@ -1,15 +1,15 @@
 package ch.alika.springpractice.support;
 
-import ch.alika.springpractice.domain.IMoodController;
+import ch.alika.springpractice.domain.IMoodCenter;
 
 public class MoodChangingHelper {
-    private final IMoodController moodController;
+    private final IMoodCenter moodController;
 
-    public MoodChangingHelper(IMoodController moodController) {
+    public MoodChangingHelper(IMoodCenter moodController) {
         this.moodController = moodController;
     }
 
-    public IMoodController getMoodController() {
+    public IMoodCenter getMoodController() {
         return moodController;
     }
 }
