@@ -9,7 +9,7 @@ import static ch.alika.springpractice.domain.Moods.*;
 
 public class MoodCenter implements IMoodCenter {
     private Mood defaultMood = NULL_MOOD;
-    private Mood currentMood = NULL_MOOD;
+    private Mood currentMood;
     private List<Mood> moods = Collections.emptyList();
 
     @Override
@@ -17,10 +17,8 @@ public class MoodCenter implements IMoodCenter {
         this.moods = moods;
         if (moods.isEmpty()) {
             defaultMood = NULL_MOOD;
-            currentMood = NULL_MOOD;
         } else {
             defaultMood = moods.get(0);
-            currentMood = moods.get(0);
         }
     }
 
@@ -47,7 +45,7 @@ public class MoodCenter implements IMoodCenter {
 
     @Override
     public Mood getCurrentMood() {
-        return currentMood;
+        return Optional.ofNullable(currentMood).orElse(defaultMood);
     }
 
     @Override
