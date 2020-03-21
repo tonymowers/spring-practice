@@ -6,8 +6,6 @@ import io.cucumber.java.en.When;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.emptyOrNullString;
-import static org.hamcrest.Matchers.not;
 import static org.hamcrest.core.Is.is;
 
 @SpringBootTest(classes = StepsSpringConfiguration.class)
