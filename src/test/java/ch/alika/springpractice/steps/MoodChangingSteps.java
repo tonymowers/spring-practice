@@ -3,7 +3,7 @@ package ch.alika.springpractice.steps;
 import ch.alika.springpractice.domain.IMoodCenter;
 import ch.alika.springpractice.domain.Mood;
 import ch.alika.springpractice.domain.Moods;
-import ch.alika.springpractice.domain.ObjectNotFoundException;
+import ch.alika.springpractice.domain.MoodNotFoundException;
 import ch.alika.springpractice.support.MoodChangingHelper;
 import io.cucumber.java.DataTableType;
 import io.cucumber.java.ParameterType;
@@ -67,7 +67,7 @@ public class MoodChangingSteps {
 
     private Mood getMoodByName(String name) {
         Optional<Mood> mood = moodController.getAvailableMoods().stream().filter(m -> m.getName().equals(name)).findFirst();
-        return mood.orElseThrow(() -> new ObjectNotFoundException(String.format("unable to find Mood with name = %s",name)));
+        return mood.orElseThrow(() -> new MoodNotFoundException(String.format("unable to find Mood with name = %s",name)));
     }
 
 

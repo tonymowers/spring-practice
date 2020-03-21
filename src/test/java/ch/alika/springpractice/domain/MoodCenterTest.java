@@ -13,6 +13,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class MoodCenterTest {
     private static final Mood HAPPY = Moods.createSimpleMood(0, "happy");
@@ -101,5 +102,10 @@ public class MoodCenterTest {
     public void whereGetCurrentMoodWhenNoMoods() {
         moodCenter = new MoodCenter();
         assertThat(moodCenter.getCurrentMood(),is(NULL_MOOD));
+    }
+
+    @Test
+    public void whereAttemptingToRetrieveUnknownMood() {
+        assertThrows(MoodNotFoundException.class, () -> moodCenter.getMoodById(Integer.MAX_VALUE));
     }
 }

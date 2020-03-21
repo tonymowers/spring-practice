@@ -32,7 +32,7 @@ public class MoodCenter implements IMoodCenter {
     @Override
     public Mood getMoodById(int id) {
         Optional<Mood> mood = moods.stream().filter(m -> m.getId() == id).findFirst();
-        return mood.orElseThrow(() -> new ObjectNotFoundException(String.format("unable to find Mood with id = %d",id)));
+        return mood.orElseThrow(() -> new MoodNotFoundException(String.format("unable to find Mood with id = %d",id)));
     }
 
     @Override
