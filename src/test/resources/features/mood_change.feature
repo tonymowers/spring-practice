@@ -1,4 +1,4 @@
-Feature:  Change My Mood
+Feature:  Change the Mood
 
   A person has a range of different moods and they choose which of the moods they want to currently have.
 
