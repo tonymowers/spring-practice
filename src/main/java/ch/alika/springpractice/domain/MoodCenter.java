@@ -5,10 +5,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import static ch.alika.springpractice.domain.Moods.*;
-
 public class MoodCenter implements IMoodCenter {
-    private Mood defaultMood = NULL_MOOD;
+    private Mood defaultMood = Mood.NULL_MOOD;
     private Mood currentMood;
     private List<Mood> moods = Collections.emptyList();
 
@@ -16,7 +14,7 @@ public class MoodCenter implements IMoodCenter {
     public void setAvailableMoods(List<Mood> moods) {
         this.moods = moods;
         if (moods.isEmpty()) {
-            defaultMood = NULL_MOOD;
+            defaultMood = Mood.NULL_MOOD;
         } else {
             defaultMood = moods.get(0);
         }

@@ -8,16 +8,16 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import static ch.alika.springpractice.domain.Moods.NULL_MOOD;
+import static ch.alika.springpractice.domain.Mood.NULL_MOOD;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class MoodCenterTest {
-    private static final Mood HAPPY = Moods.createSimpleMood(0, "happy");
-    private static final Mood SAD = Moods.createSimpleMood(1,"sad");
+public class MoodCenterTests {
+    private static final Mood HAPPY = new Mood(0, "happy");
+    private static final Mood SAD = new Mood(1, "sad");
     private IMoodCenter moodCenter;
 
     @BeforeEach

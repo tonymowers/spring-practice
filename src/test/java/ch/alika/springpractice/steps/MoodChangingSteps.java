@@ -2,7 +2,6 @@ package ch.alika.springpractice.steps;
 
 import ch.alika.springpractice.domain.IMoodCenter;
 import ch.alika.springpractice.domain.Mood;
-import ch.alika.springpractice.domain.Moods;
 import ch.alika.springpractice.domain.MoodNotFoundException;
 import ch.alika.springpractice.support.MoodChangingHelper;
 import io.cucumber.java.DataTableType;
@@ -27,10 +26,10 @@ public class MoodChangingSteps {
 
     @DataTableType
     public Mood moodEntry(Map<String, String> entry) {
-        return Moods.createSimpleMood(Integer.parseInt(entry.get("id")), entry.get("name"));
+        return new Mood(Integer.parseInt(entry.get("id")), entry.get("name"));
     }
 
-    @ParameterType("\"(.*)\"")
+    @ParameterType(value = "\"(.*)\"", name = "mood_name")
     public Mood mood(String moodName) {
         return getMoodByName(moodName);
     }
@@ -40,7 +39,7 @@ public class MoodChangingSteps {
         moodController.setAvailableMoods(moods);
     }
 
-    @When("{mood} is the default mood")
+    @When("{mood_name} is the default mood")
     public void isTheDefaultMood(Mood mood) {
         moodController.setDefaultMoodById(mood.getId());
     }
@@ -49,12 +48,12 @@ public class MoodChangingSteps {
     public void iHaveDoneNothingAboutMyMood() {
     }
 
-    @Then("the mood should be {mood}")
+    @Then("the mood should be {mood_name}")
     public void theMoodShouldBe(Mood mood) {
         assertThat(moodController.getCurrentMood(),is(mood));
     }
 
-    @Given("the {mood} mood is chosen")
+    @Given("the {mood_name} mood is chosen")
     public void theMoodIsChosen(Mood mood) {
         moodController.setCurrentMoodById(mood.getId());
     }
