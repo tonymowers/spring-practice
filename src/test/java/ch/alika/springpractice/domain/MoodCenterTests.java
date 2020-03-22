@@ -16,8 +16,8 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class MoodCenterTests {
-    private static final Mood HAPPY = new Mood(0, "happy");
-    private static final Mood SAD = new Mood(1, "sad");
+    private static final Mood HAPPY = new Mood("happy", "happy");
+    private static final Mood SAD = new Mood("sad", "sad");
     private IMoodCenter moodCenter;
 
     @BeforeEach
@@ -106,6 +106,6 @@ public class MoodCenterTests {
 
     @Test
     public void whereAttemptingToRetrieveUnknownMood() {
-        assertThrows(MoodNotFoundException.class, () -> moodCenter.getMoodById(Integer.MAX_VALUE));
+        assertThrows(MoodNotFoundException.class, () -> moodCenter.getMoodById(""));
     }
 }

@@ -8,9 +8,9 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 public class MoodTests {
-    private static final int SIMPLE_ID = 0;
+    private static final String SIMPLE_ID = "SIMPLE";
     private static final String SIMPLE_NAME = "SIMPLE";
-    private static final Mood SIMPLE_MOOD = new Mood(0, SIMPLE_NAME);
+    private static final Mood SIMPLE_MOOD = new Mood(SIMPLE_ID, SIMPLE_NAME);
 
     @Test
     public void whereSimpleMoodCreated() {
@@ -20,7 +20,7 @@ public class MoodTests {
 
     @Test
     public void whereNullMoodUsed() {
-        assertThat(NULL_MOOD.getId(),is(-1));
+        assertThat(NULL_MOOD.getId(),is("NULL"));
         assertThat(NULL_MOOD.getName(),is("NULL"));
         assertThat(NULL_MOOD,is(Matchers.not(SIMPLE_MOOD)));
     }

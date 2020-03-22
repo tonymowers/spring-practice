@@ -8,15 +8,15 @@ public interface IMoodCenter {
 
     List<Mood> getAvailableMoods();
 
-    Mood getMoodById(int id);
+    Mood getMoodById(String id);
 
     Mood getDefaultMood();
 
-    void setDefaultMoodById(int moodId);
+    void setDefaultMoodById(String moodId);
 
     Mood getCurrentMood();
 
-    void setCurrentMoodById(int id);
+    void setCurrentMoodById(String id);
 
     void setCurrentMoodToDefaultMood();
 }

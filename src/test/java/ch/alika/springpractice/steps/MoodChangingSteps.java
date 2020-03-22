@@ -18,7 +18,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
 public class MoodChangingSteps {
-    IMoodCenter moodController;
+    private final IMoodCenter moodController;
 
     public MoodChangingSteps(MoodChangingHelper helper) {
         moodController = helper.getMoodController();
@@ -26,7 +26,7 @@ public class MoodChangingSteps {
 
     @DataTableType
     public Mood moodEntry(Map<String, String> entry) {
-        return new Mood(Integer.parseInt(entry.get("id")), entry.get("name"));
+        return new Mood(entry.get("id"), entry.get("name"));
     }
 
     @ParameterType(value = "\"(.*)\"", name = "mood_name")
@@ -59,7 +59,7 @@ public class MoodChangingSteps {
     }
 
     @When("the default mood is chosen")
-    public void theDefaulMoodIsChosen() {
+    public void theDefaultMoodIsChosen() {
         moodController.setCurrentMoodToDefaultMood();
     }
 

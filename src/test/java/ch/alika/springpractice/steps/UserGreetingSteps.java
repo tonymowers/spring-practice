@@ -11,7 +11,7 @@ import static org.hamcrest.core.Is.is;
 @SpringBootTest(classes = StepsSpringConfiguration.class)
 public class UserGreetingSteps {
 
-    private Home home = new Home();
+    private final Home home = new Home();
 
     @Given("a new user")
     public void a_new_user() {
