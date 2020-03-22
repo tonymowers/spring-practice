@@ -8,8 +8,6 @@ public interface IMoodCenter {
 
     List<Mood> getAvailableMoods();
 
-    Mood getMoodById(String id);
-
     Mood getDefaultMood();
 
     void setDefaultMoodById(String moodId);

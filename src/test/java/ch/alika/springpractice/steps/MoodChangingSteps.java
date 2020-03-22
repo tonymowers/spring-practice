@@ -14,11 +14,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import static ch.alika.springpractice.domain.Mood.NULL_MOOD;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class MoodChangingSteps {
     private final IMoodCenter moodController;
+    private boolean exceptionExpected = false;
 
     public MoodChangingSteps(MoodChangingHelper helper) {
         moodController = helper.getMoodController();
@@ -53,6 +56,21 @@ public class MoodChangingSteps {
         assertThat(moodController.getCurrentMood(),is(mood));
     }
 
+    @Then("the default mood should be {mood_name}")
+    public void theDefaultMoodShouldBe(Mood mood) {
+        assertThat(moodController.getDefaultMood(),is(mood));
+    }
+
+    @Then("the mood should be unknown")
+    public void theMoodShouldBeUnknown() {
+        assertThat(moodController.getCurrentMood(),is(NULL_MOOD));
+    }
+
+    @Then("the default mood should be unknown")
+    public void theDefaultMoodShouldBeUnknown() {
+        assertThat(moodController.getCurrentMood(),is(NULL_MOOD));
+    }
+
     @Given("the {mood_name} mood is chosen")
     public void theMoodIsChosen(Mood mood) {
         moodController.setCurrentMoodById(mood.getId());
@@ -63,6 +81,16 @@ public class MoodChangingSteps {
         moodController.setCurrentMoodToDefaultMood();
     }
 
+    @Then("a MoodNotFoundException should be thrown")
+    public void exceptionShouldBeThrown() {
+        exceptionExpected = true;
+    }
+
+    @When("an unknown mood is chosen")
+    public void doNoMore() {
+        if (exceptionExpected)
+            assertThrows(MoodNotFoundException.class, () -> moodController.setCurrentMoodById(NULL_MOOD.getId()));
+    }
 
     private Mood getMoodByName(String name) {
         Optional<Mood> mood = moodController.getAvailableMoods().stream().filter(m -> m.getName().equals(name)).findFirst();

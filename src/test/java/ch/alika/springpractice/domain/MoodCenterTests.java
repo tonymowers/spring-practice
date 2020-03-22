@@ -105,7 +105,7 @@ public class MoodCenterTests {
     }
 
     @Test
-    public void whereAttemptingToRetrieveUnknownMood() {
-        assertThrows(MoodNotFoundException.class, () -> moodCenter.getMoodById(""));
+    public void whereSetCurrentMoodToUnknownMood() {
+        assertThrows(MoodNotFoundException.class, () -> moodCenter.setCurrentMoodById(NULL_MOOD.getId()));
     }
 }

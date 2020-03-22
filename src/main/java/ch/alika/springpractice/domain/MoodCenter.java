@@ -26,12 +26,6 @@ public class MoodCenter implements IMoodCenter {
     }
 
     @Override
-    public Mood getMoodById(String id) {
-        Optional<Mood> mood = moods.stream().filter(m -> m.getId().equals(id)).findFirst();
-        return mood.orElseThrow(() -> new MoodNotFoundException(String.format("unable to find Mood with id = %s",id)));
-    }
-
-    @Override
     public Mood getDefaultMood() {
         return defaultMood;
     }
@@ -54,6 +48,11 @@ public class MoodCenter implements IMoodCenter {
     @Override
     public void setCurrentMoodToDefaultMood() {
         this.currentMood = defaultMood;
+    }
+
+    private Mood getMoodById(String id) {
+        Optional<Mood> mood = moods.stream().filter(m -> m.getId().equals(id)).findFirst();
+        return mood.orElseThrow(() -> new MoodNotFoundException(String.format("unable to find Mood with id = %s",id)));
     }
 
 }
