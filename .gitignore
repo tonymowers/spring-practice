@@ -27,7 +27,6 @@ target/
 .idea/
 
 # fontend-maven-plugin
-node/
 node_modules/
 
 *.iml

@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "outDir": "./target/classes/static",
     "noImplicitAny": true,
     "module": "es6",
     "target": "es5",
