@@ -11,7 +11,7 @@ module.exports = {
         contentBase: target,
         port: 9000,
         proxy: {
-            '/api': 'http://localhost:8080'
+            '/api': 'http://localhost:8080/api'
         }
     },
     module: {
@@ -27,13 +27,26 @@ module.exports = {
             },
             {
                 test: /\.(png|svg|jpg|gif)$/,
-                use: [
-                    'file-loader'
-                ],
+                loader: 'file-loader'
             },
+            {
+                test: /\.(html)$/,
+                loader: 'file-loader',
+                options: {
+                    regExp: /([a-z0-9]+)\.html$/i,
+                    name: '[1].html',
+                },
+            },
+            {
+                test: /\.vue$/,
+                loader: 'vue-loader'
+            }
         ],
     },
     resolve: {
+        alias: {
+            'vue$': 'vue/dist/vue.esm.js'
+        },
         extensions: [ '.tsx', '.ts', '.js' ],
     },
     output: {
