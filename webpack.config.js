@@ -5,7 +5,10 @@ module.exports = {
     optimization: {
         minimize: false //Update this to true or false
     },
-    entry: './src/frontend/index.ts',
+    entry: {
+        app: './src/frontend/index.ts',
+        adminApp: './src/frontend/admin.ts'
+    },
     devServer: {
         contentBase: path.resolve(__dirname, 'target/classes/static'),
         port: 9000,
@@ -49,7 +52,7 @@ module.exports = {
         extensions: [ '.tsx', '.ts', '.js' ],
     },
     output: {
-        filename: 'bundle.js',
+        filename: '[name].js',
         path: path.resolve(__dirname, 'target/classes/static'),
         libraryTarget: 'var',
         library: 'EntryPoint'

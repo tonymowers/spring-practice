@@ -6,12 +6,22 @@
 </head>
 <body>
 
-<h1>Spring Boot Practice</h1>
+<h1>Spring Practice</h1>
+<p><a href="admin.html">Admin</a></p>
 
 <div id="app">
     {{ message }}
+    <div style="">
+        <mood title="Happy">
+            <template v-slot:header>Happy header content goes here</template>
+        </mood>
+        <mood title="Sad">
+            <template v-slot:header>Sad header content goes here</template>
+        </mood>
+    </div>
 </div>
 
-<script src="bundle.js"></script>
+
+<script src="app.js"></script>
 </body>
 </html>

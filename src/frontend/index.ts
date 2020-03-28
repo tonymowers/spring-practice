@@ -15,10 +15,31 @@ function component() {
     return result;
 }
 
+const ComponentMood = {
+    data: function() {
+        return {
+            count: 0
+        }
+    },
+    template: `
+        <div class="mood"">
+            <div><b>mood</b> {{ title }}</div>
+            <div>title = '{{ title }}'</div>
+            <div>header = '<slot name="header"></slot>'</div>
+        </div>
+    `,
+    props: {
+        title: String
+    }
+};
+
 let app : Vue = new Vue({
     el: '#app',
     data: {
         message: 'Vue is working!'
+    },
+    components: {
+        'mood' : ComponentMood
     }
 });
 
@@ -28,5 +49,6 @@ function sayHello(msg: string) {
     let a: any = app;
     return a.message = msg;
 }
-export { app, sayHello }
+
+export {sayHello, app}
 
