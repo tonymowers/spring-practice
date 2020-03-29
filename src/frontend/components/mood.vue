@@ -22,9 +22,9 @@
 
         &:hover {
             background-color: lightgray;
+            border: solid #888 1px;
             width: 170px;
-            margin: 0 10px 10px 10px;
-            padding-top: 20px;
+            margin: 0 10px 15px 10px;
         }
     }
 </style>
