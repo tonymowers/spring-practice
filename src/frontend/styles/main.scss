@@ -4,6 +4,10 @@ body {
     background: wheat;
 }
 
-.mood {
-    padding: 1em;
+.mood-container {
+    h3 {
+        margin: 0;
+    }
+    border-radius: 10px;
+    overflow-y: scroll;
 }

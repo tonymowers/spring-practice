@@ -2,6 +2,9 @@ import Vue from 'vue';
 import './styles/main.scss';
 import Icon from './assets/house.svg';
 import './index.html';
+import MoodComponent from "./components/mood.vue";
+
+export {app}
 
 function component() {
     function createImage() {
@@ -15,40 +18,20 @@ function component() {
     return result;
 }
 
-const ComponentMood = {
-    data: function() {
-        return {
-            count: 0
-        }
-    },
-    template: `
-        <div class="mood"">
-            <div><b>mood</b> {{ title }}</div>
-            <div>title = '{{ title }}'</div>
-            <div>header = '<slot name="header"></slot>'</div>
-        </div>
-    `,
-    props: {
-        title: String
-    }
-};
-
 let app : Vue = new Vue({
     el: '#app',
     data: {
-        message: 'Vue is working!'
+        moods: [
+            { id: 1, name: "Happy"},
+            { id: 2, name: "Sad"},
+            { id: 3, name: "Angry"}
+        ]
     },
     components: {
-        'mood' : ComponentMood
+        'mood' : MoodComponent
     }
 });
 
 document.body.appendChild(component());
 
-function sayHello(msg: string) {
-    let a: any = app;
-    return a.message = msg;
-}
-
-export {sayHello, app}
 
