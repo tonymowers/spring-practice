@@ -1,5 +1,6 @@
 const path = require('path');
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
     mode: 'development',
@@ -7,8 +8,8 @@ module.exports = {
         minimize: false //Update this to true or false
     },
     entry: {
-        app: './src/frontend/index.ts',
-        adminApp: './src/frontend/admin.ts'
+        app: '@/index.ts',
+        adminApp: '@/admin.ts'
     },
     devServer: {
         contentBase: path.resolve(__dirname, 'target/classes/static'),
@@ -50,6 +51,9 @@ module.exports = {
         new VueLoaderPlugin()
     ],
     resolve: {
+        plugins: [
+            new TsconfigPathsPlugin({ /*configFile: "./path/to/tsconfig.json" */ })
+        ],
         alias: {
             'vue$': 'vue/dist/vue.esm.js'
         },

@@ -1,5 +1,7 @@
-import Icon from "./assets/bike.svg";
-import './admin.html';
+import Icon from "@/assets/bike.svg";
+import '@/admin.html';
+
+export { doAdmin }
 
 function component() {
     function createImage() {
@@ -13,10 +15,9 @@ function component() {
     return result;
 }
 
-document.body.appendChild(component())
+document.body.appendChild(component());
 
 function doAdmin() {
     console.log("admin message")
 }
 
-export { doAdmin }

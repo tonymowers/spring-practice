@@ -1,8 +1,8 @@
 import Vue from 'vue';
-import './styles/main.scss';
-import Icon from './assets/house.svg';
-import './index.html';
-import MoodComponent from "./components/mood.vue";
+import '@/styles/main.scss';
+import Icon from '@/assets/house.svg';
+import '@/index.html';
+import MoodComponent from "@/components/Mood.vue";
 
 export {app}
 

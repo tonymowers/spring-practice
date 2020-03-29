@@ -1,5 +1,9 @@
 {
   "compilerOptions": {
+    "baseUrl": "src/frontend",
+    "paths": {
+      "@/*" : ["*"]
+    },
     "noImplicitAny": true,
     "strict": true,
     "module": "es2015",
