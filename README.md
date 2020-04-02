@@ -43,15 +43,15 @@ mvn clean compile jib:build
 
 The following will run the docker image from the docker hub repository:
 ```
-docker run -p 8080:8080 tony-mowers/spring-practice:<project.version>
+docker run -p 8080:8080 tonymowers/spring-practice:<project.version>
 ```
 for example:
 ```
-docker run -p 8080:8080 tony-mowers/spring-practice:0.4.0-SNAPSHOT
+docker run -p 8080:8080 tonymowers/spring-practice:0.4.0-SNAPSHOT
 ```
 or
 ```
-docker run -p 8080:8080 tony-mowers/spring-practice:latest
+docker run -p 8080:8080 tonymowers/spring-practice:latest
 ```
 
 The following will publish to docker hub using both the maven project version and 'latest' as the image tags:

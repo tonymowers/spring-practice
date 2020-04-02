@@ -1,5 +1,13 @@
-$main-color: blue;
+$main-color: darkblue;
 body {
     color: $main-color;
     background: wheat;
+}
+
+.mood-container {
+    h3 {
+        margin: 0;
+    }
+    border-radius: 10px;
+    overflow-y: scroll;
 }

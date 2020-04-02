@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring Practice</title>
+</head>
+<body>
+
+<h1>Spring Practice</h1>
+<p><a href="admin.html">Admin</a></p>
+
+<div id="app">
+    <h3>Moods</h3>
+
+    <div class="mood-container">
+
+        <mood v-for="item in moods"
+              v-bind:key="item.id"
+              v-bind:name="item.name">
+        </mood>
+
+    </div>
+</div>
+
+
+<script src="app.js"></script>
+</body>
+</html>

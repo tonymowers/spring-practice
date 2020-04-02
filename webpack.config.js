@@ -1,17 +1,21 @@
 const path = require('path');
-const target = path.resolve(__dirname, 'target/classes/static');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
     mode: 'development',
     optimization: {
         minimize: false //Update this to true or false
     },
-    entry: './src/frontend/index.ts',
+    entry: {
+        app: '@/index.ts',
+        adminApp: '@/admin.ts'
+    },
     devServer: {
-        contentBase: target,
+        contentBase: path.resolve(__dirname, 'target/classes/static'),
         port: 9000,
         proxy: {
-            '/api': 'http://localhost:8080'
+            '/api': 'http://localhost:8080/api'
         }
     },
     module: {
@@ -27,18 +31,39 @@ module.exports = {
             },
             {
                 test: /\.(png|svg|jpg|gif)$/,
-                use: [
-                    'file-loader'
-                ],
+                loader: 'file-loader'
             },
+            {
+                test: /\.(html)$/,
+                loader: 'file-loader',
+                options: {
+                    regExp: /([a-z0-9]+)\.html$/i,
+                    name: '[1].html',
+                },
+            },
+            {
+                test: /\.vue$/,
+                loader: 'vue-loader'
+            }
         ],
     },
+    plugins: [
+        new VueLoaderPlugin()
+    ],
     resolve: {
+        plugins: [
+            new TsconfigPathsPlugin({ /*configFile: "./path/to/tsconfig.json" */ })
+        ],
+        alias: {
+            'vue$': 'vue/dist/vue.esm.js'
+        },
         extensions: [ '.tsx', '.ts', '.js' ],
     },
     output: {
-        filename: 'bundle.js',
-        path: target,
+        filename: '[name].js',
+        path: path.resolve(__dirname, 'target/classes/static'),
+        libraryTarget: 'var',
+        library: 'EntryPoint'
     },
 
 };
