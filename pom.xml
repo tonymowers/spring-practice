@@ -13,7 +13,7 @@
 
     <groupId>ch.alika</groupId>
     <artifactId>spring-practice</artifactId>
-    <version>0.6.0-SNAPSHOT</version>
+    <version>0.6.0</version>
     <packaging>jar</packaging>
 
     <properties>
