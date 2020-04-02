@@ -1,3 +1,3 @@
 export default function () {
-    return "joke text here";
+    return "Hello World!";
 }
