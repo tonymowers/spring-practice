@@ -3,7 +3,7 @@ var common = [
     '--require-module ts-node/register',
     '--require src/frontend/features/support/env.js',
     '--require src/frontend/features/**/*.ts',
-    '--tags @ts',
+    '--tags @frontend',
     '  src/test/resources/features/**/*.feature'
 ].join(' ')
 

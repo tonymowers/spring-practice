@@ -1,4 +1,4 @@
-@ts
+@frontend
 Feature: Application Home
 
   The application should provide an application home from which users begin their journey.
