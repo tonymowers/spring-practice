@@ -168,6 +168,26 @@
                             <arguments>run-script build</arguments>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>run tests</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+
+                        <configuration>
+                            <arguments>test</arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>run cucumber tests</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+
+                        <configuration>
+                            <arguments>run-script cucumber</arguments>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
         </plugins>

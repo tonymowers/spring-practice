@@ -42,11 +42,13 @@
     "vue": "^2.6.11"
   },
   "mocha": {
-    "extension": ["ts"],
+    "extension": [
+      "ts"
+    ],
     "spec": "src/frontend/tests/*.spec.ts",
     "require": [
-        "ts-node/register",
-        "tsconfig-paths/register"
+      "ts-node/register",
+      "tsconfig-paths/register"
     ]
   }
 }
