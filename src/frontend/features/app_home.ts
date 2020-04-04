@@ -3,7 +3,7 @@ import { expect } from 'chai'
 import greeting from '@/utils/greeting'
 
 Given('a new user', function () {
-    // Write code here that turns the phrase above into concrete actions
+    console.log(this.WORLD_NAME);
 });
 
 When('the user starts using the application', function () {
@@ -13,5 +13,4 @@ When('the user starts using the application', function () {
 
 Then('the user should be greeted with {string}', function (msg: string) {
     expect(msg).to.equal(greeting())
-
 });
