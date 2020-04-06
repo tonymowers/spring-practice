@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Optional;
 
 public class MoodCenter implements IMoodCenter {
+    private IMoodStrategy moodStrategy = new NullMoodStrategy();
+
     private Mood defaultMood = Mood.NULL_MOOD;
     private Mood currentMood;
     private List<Mood> moods = Collections.emptyList();
@@ -57,6 +59,19 @@ public class MoodCenter implements IMoodCenter {
 
     @Override
     public String getGreeting() {
-        return "Howdy!";
+        return moodStrategy.getGreetingSupplier().getGreeting();
+    }
+
+    private static class NullMoodStrategy implements IMoodStrategy {
+
+        @Override
+        public Mood getMood() {
+            return Mood.NULL_MOOD;
+        }
+
+        @Override
+        public IGreetingSupplier getGreetingSupplier() {
+            return () -> "Howdy!";
+        }
     }
 }

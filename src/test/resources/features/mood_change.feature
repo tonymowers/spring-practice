@@ -4,9 +4,9 @@ Feature:  Change the Mood
 
   Background: Setup the range of possible moods
     Given the following possible moods:
-      | id  | name   |
-      | 0   | happy  |
-      | 1   | sad    |
+      | id    | name   |
+      | HAPPY | happy  |
+      | SAD   | sad    |
     And "happy" is the default mood
 
   Scenario: No mood is chosen
