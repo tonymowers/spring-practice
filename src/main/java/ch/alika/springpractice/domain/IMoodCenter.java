@@ -2,7 +2,7 @@ package ch.alika.springpractice.domain;
 
 import java.util.List;
 
-public interface IMoodCenter {
+public interface IMoodCenter extends IGreetingSupplier {
 
     void setAvailableMoods(List<Mood> moods);
 

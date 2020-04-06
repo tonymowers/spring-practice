@@ -55,4 +55,8 @@ public class MoodCenter implements IMoodCenter {
         return mood.orElseThrow(() -> new MoodNotFoundException(String.format("unable to find Mood with id = %s",id)));
     }
 
+    @Override
+    public String getGreeting() {
+        return "Howdy!";
+    }
 }

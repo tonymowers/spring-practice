@@ -108,4 +108,9 @@ public class MoodCenterTests {
     public void whereSetCurrentMoodToUnknownMood() {
         assertThrows(MoodNotFoundException.class, () -> moodCenter.setCurrentMoodById(NULL_MOOD.getId()));
     }
+
+    @Test
+    public void whereNullMoodGreetingRetrieved() {
+        assertThat(moodCenter.getGreeting(),is("Howdy!"));
+    }
 }
