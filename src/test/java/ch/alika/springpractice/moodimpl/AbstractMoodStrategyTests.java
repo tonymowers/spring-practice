@@ -2,32 +2,34 @@ package ch.alika.springpractice.moodimpl;
 
 import ch.alika.springpractice.domain.IMoodStrategy;
 import ch.alika.springpractice.domain.Mood;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.not;
-import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class HappyMoodTests {
-    private IMoodStrategy moodStrategy = new HappyMood();
+public abstract class AbstractMoodStrategyTests {
+    private IMoodStrategy moodStrategy;
 
-    @BeforeEach
-    void beforeEach() {
-
+    protected AbstractMoodStrategyTests(IMoodStrategy moodStrategy) {
+        this.moodStrategy = moodStrategy;
     }
+
+    protected abstract Mood expectedMood();
+
+    protected abstract String expectedGreeting();
 
     @Test
     public void shouldProvideMood() {
-        Mood HAPPY_MOOD = new Mood("HAPPY","happy");
-        assertThat(moodStrategy.getMood(),is(HAPPY_MOOD));
+        assertThat(getMood(),is(expectedMood()));
     }
 
     @Test
     public void shouldProvideGreeting() {
-        assertThat(getGreeting(),is("Howdy!"));
+        assertThat(getGreeting(),is(expectedGreeting()));
+    }
+
+    private Mood getMood() {
+        return moodStrategy.getMood();
     }
 
     private String getGreeting() {

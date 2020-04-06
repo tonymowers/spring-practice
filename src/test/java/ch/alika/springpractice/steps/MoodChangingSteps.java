@@ -37,11 +37,6 @@ public class MoodChangingSteps {
         return getMoodByName(moodName);
     }
 
-    @Given("the following possible moods:")
-    public void theFollowingPossibleMoods(List<Mood> moods) {
-        moodController.setAvailableMoods(moods);
-    }
-
     @When("{mood_name} is the default mood")
     public void isTheDefaultMood(Mood mood) {
         moodController.setDefaultMoodById(mood.getId());

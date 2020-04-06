@@ -3,10 +3,6 @@ Feature:  Change the Mood
   A person has a range of different moods and they choose which of the moods they want to currently have.
 
   Background: Setup the range of possible moods
-    Given the following possible moods:
-      | id    | name   |
-      | HAPPY | happy  |
-      | SAD   | sad    |
     And "happy" is the default mood
 
   Scenario: No mood is chosen
@@ -31,12 +27,6 @@ Feature:  Change the Mood
   Scenario: The default mood is set
     When "sad" is the default mood
     Then the default mood should be "sad"
-
-  Scenario: There are no moods available
-    Given the following possible moods:
-      | id  | name   |
-    Then the default mood should be unknown
-    And the mood should be unknown
 
   Scenario: An unknown mood is chosen
     * a MoodNotFoundException should be thrown

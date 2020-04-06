@@ -1,65 +1,69 @@
 package ch.alika.springpractice.domain;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class MoodCenter implements IMoodCenter {
-    private IMoodStrategy moodStrategy = new NullMoodStrategy();
+    private static final IMoodStrategy NULL_MOOD_STRATEGY = new NullMoodStrategy();
 
-    private Mood defaultMood = Mood.NULL_MOOD;
-    private Mood currentMood;
-    private List<Mood> moods = Collections.emptyList();
+    private IMoodStrategy defaultStrategy;
+    private IMoodStrategy currentStrategy;
+    private List<IMoodStrategy> strategies;
 
-    @Override
-    public void setAvailableMoods(List<Mood> moods) {
-        this.moods = moods;
-        if (moods.isEmpty()) {
-            defaultMood = Mood.NULL_MOOD;
+    public MoodCenter() {
+        this(Collections.emptyList());
+    }
+
+    public MoodCenter(List<IMoodStrategy> strategies) {
+        this.strategies = strategies;
+        if (strategies.isEmpty()) {
+            defaultStrategy = NULL_MOOD_STRATEGY;
         } else {
-            defaultMood = moods.get(0);
+            defaultStrategy = strategies.get(0);
         }
+        currentStrategy = defaultStrategy;
     }
 
     @Override
     public List<Mood> getAvailableMoods() {
-        return new ArrayList<>(moods);
+        return strategies.stream().map(IMoodStrategy::getMood).collect(Collectors.toList());
     }
 
     @Override
     public Mood getDefaultMood() {
-        return defaultMood;
+        return defaultStrategy.getMood();
     }
 
     @Override
     public void setDefaultMoodById(String moodId) {
-        defaultMood = getMoodById(moodId);
+        defaultStrategy = getMoodStrategyById(moodId);
     }
 
     @Override
     public Mood getCurrentMood() {
-        return Optional.ofNullable(currentMood).orElse(defaultMood);
+        return currentStrategy.getMood();
     }
 
     @Override
     public void setCurrentMoodById(String id) {
-        this.currentMood = getMoodById(id);
+        this.currentStrategy = getMoodStrategyById(id);
     }
 
     @Override
     public void setCurrentMoodToDefaultMood() {
-        this.currentMood = defaultMood;
+        this.currentStrategy = defaultStrategy;
     }
 
-    private Mood getMoodById(String id) {
-        Optional<Mood> mood = moods.stream().filter(m -> m.getId().equals(id)).findFirst();
+    private IMoodStrategy getMoodStrategyById(String id) {
+        Optional<IMoodStrategy> mood = strategies.stream().filter(m -> m.getMood().getId().equals(id)).findFirst();
         return mood.orElseThrow(() -> new MoodNotFoundException(String.format("unable to find Mood with id = %s",id)));
     }
 
     @Override
     public String getGreeting() {
-        return moodStrategy.getGreetingSupplier().getGreeting();
+        return currentStrategy.getGreetingSupplier().getGreeting();
     }
 
     private static class NullMoodStrategy implements IMoodStrategy {
