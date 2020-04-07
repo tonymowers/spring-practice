@@ -2,17 +2,22 @@ Feature:  Change the Mood
 
   A person has a range of different moods and they choose which of the moods they want to currently have.
 
-  Background: Setup the range of possible moods
-    And "happy" is the default mood
+  Background: Setup the default mood
+    Given "happy" is the default mood
+    And the default mood is chosen
 
   Scenario: No mood is chosen
     Then the default mood should be "happy"
     And the mood should be "happy"
 
-  Scenario: The happy mood is chosen
-    Given the "sad" mood is chosen
-    When the "happy" mood is chosen
-    Then the mood should be "happy"
+  Scenario Outline: Mood changed from <mood_name> to <new_mood_name>
+    Given the "<mood_name>" mood is chosen
+    When the "<new_mood_name>" mood is chosen
+    Then the mood should be "<new_mood_name>"
+    Examples:
+      | mood_name | new_mood_name |
+      | sad       | happy         |
+      | happy     | sad           |
 
   Scenario: The sad mood is chosen
     Given the "happy" mood is chosen

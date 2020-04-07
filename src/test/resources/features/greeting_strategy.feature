@@ -1,18 +1,19 @@
 Feature: Greeting Strategy
 
-  The way the application greetings a user should depend on the selected mood
+  How the user is greeted should depend upon the current mood
 
-  Background: Setup the range of possible moods
+  Background: Setup the default mood
     Given "happy" is the default mood
+    And the default mood is chosen
 
-    Scenario: user greeted using default mood
-      Then the greeting should be "Howdy!"
+  Scenario: user greeted using default mood
+    Then the greeting should be "Howdy!"
 
-    Scenario Outline: user greeted using <mood_name> mood
-      When the <mood_name> mood is chosen
-      Then the greeting should be <greeting>
+  Scenario Outline: user greeted using "<mood_name>" mood
+    When the "<mood_name>" mood is chosen
+    Then the greeting should be "<greeting>"
 
     Examples:
-      | mood_name | greeting |
-      | "happy"   | "Howdy!"  |
-      | "sad"     | "Please go away :-("  |
+      | mood_name | greeting           |
+      | happy     | Howdy!             |
+      | sad       | Please go away :-( |
