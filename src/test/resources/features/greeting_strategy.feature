@@ -8,10 +8,11 @@ Feature: Greeting Strategy
     Scenario: user greeted using default mood
       Then the greeting should be "Howdy!"
 
-    Scenario: user greeted using happy mood
-      When the "happy" mood is chosen
-      Then the greeting should be "Howdy!"
+    Scenario Outline: user greeted using <mood_name> mood
+      When the <mood_name> mood is chosen
+      Then the greeting should be <greeting>
 
-    Scenario: user greeted using sad mood
-      When the "sad" mood is chosen
-      Then the greeting should be "Please go away :-("
+    Examples:
+      | mood_name | greeting |
+      | "happy"   | "Howdy!"  |
+      | "sad"     | "Please go away :-("  |
