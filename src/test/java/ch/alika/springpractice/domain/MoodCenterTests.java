@@ -17,6 +17,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class MoodCenterTests {
     private static final Mood HAPPY = new Mood("happy", "happy");
     private static final Mood SAD = new Mood("sad", "sad");
+    public static final String HOWDY_GREETING = "Howdy!";
+    public static final String GO_AWAY_GREETING = "Go Aways :-(";
     private IMoodCenter moodCenter;
 
     @BeforeEach
@@ -27,8 +29,8 @@ public class MoodCenterTests {
 
     private List<IMoodStrategy> getFakeStrategies() {
         return Arrays.asList(
-                new FakeMoodStrategy(HAPPY, "Howdy!"),
-                new FakeMoodStrategy(SAD, "Go Aways :-(")
+                new FakeMoodStrategy(HAPPY, HOWDY_GREETING),
+                new FakeMoodStrategy(SAD, GO_AWAY_GREETING)
         );
     }
 
@@ -110,8 +112,18 @@ public class MoodCenterTests {
     public void whereNullMoodGreetingRetrieved() {
         moodCenter = new MoodCenter();
         assertThat(moodCenter.getCurrentMood(),is(NULL_MOOD));
-        assertThat(moodCenter.getGreeting(),is("Howdy!"));
+        assertThat(moodCenter.getGreeting(),is(HOWDY_GREETING));
     }
+
+    @Test
+    public void whereGreetedByCurrentMood() {
+        moodCenter.setCurrentMoodById(HAPPY.getId());
+        assertThat(moodCenter.getGreeting(),is(HOWDY_GREETING));
+
+        moodCenter.setCurrentMoodById(SAD.getId());
+        assertThat(moodCenter.getGreeting(),is(GO_AWAY_GREETING));
+    }
+
 
     private static class FakeMoodStrategy implements IMoodStrategy {
 
