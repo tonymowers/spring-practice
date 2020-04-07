@@ -5,7 +5,7 @@ import ch.alika.springpractice.domain.IMoodStrategy;
 import ch.alika.springpractice.domain.Mood;
 
 public class SadStrategy implements IMoodStrategy {
-    private Mood MOOD = new Mood("SAD","sad");
+    private static final Mood MOOD = new Mood("SAD","sad");
 
     @Override
     public Mood getMood() {

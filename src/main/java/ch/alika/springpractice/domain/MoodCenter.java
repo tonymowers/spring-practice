@@ -3,6 +3,7 @@ package ch.alika.springpractice.domain;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class MoodCenter implements IMoodCenter {
@@ -13,12 +14,8 @@ public class MoodCenter implements IMoodCenter {
     private List<IMoodStrategy> moodStrategies;
 
     public MoodCenter(List<IMoodStrategy> strategies) {
-        this.moodStrategies = strategies;
-        if (moodStrategies.isEmpty()) {
-            defaultStrategy = NULL_STRATEGY;
-        } else {
-            defaultStrategy = moodStrategies.get(0);
-        }
+        this.moodStrategies = Optional.ofNullable(strategies).orElse(Collections.emptyList());
+        defaultStrategy = moodStrategies.isEmpty() ? NULL_STRATEGY : moodStrategies.get(0);
         currentStrategy = defaultStrategy;
     }
 
@@ -38,7 +35,7 @@ public class MoodCenter implements IMoodCenter {
 
     @Override
     public void setDefaultMoodById(String moodId) {
-        defaultStrategy = getMoodById(moodId);
+        defaultStrategy = getStrategyById(moodId);
     }
 
     @Override
@@ -48,7 +45,7 @@ public class MoodCenter implements IMoodCenter {
 
     @Override
     public void setCurrentMoodById(String id) {
-        this.currentStrategy = getMoodById(id);
+        this.currentStrategy = getStrategyById(id);
     }
 
     @Override
@@ -56,14 +53,18 @@ public class MoodCenter implements IMoodCenter {
         this.currentStrategy = defaultStrategy;
     }
 
-    private IMoodStrategy getMoodById(String id) {
-        Optional<IMoodStrategy> mood = moodStrategies.stream().filter(m -> m.getMood().getId().equals(id)).findFirst();
-        return mood.orElseThrow(() -> new MoodNotFoundException(String.format("unable to find Mood with id = %s",id)));
-    }
-
     @Override
     public String getGreeting() {
         return currentStrategy.getGreetingSupplier().getGreeting();
+    }
+
+    private IMoodStrategy getStrategyById(String id) {
+        Optional<IMoodStrategy> mood = moodStrategies.stream().filter(testIfStrategyHasMoodId(id)).findFirst();
+        return mood.orElseThrow(() -> new MoodNotFoundException(String.format("unable to find Mood with id = %s",id)));
+    }
+
+    private static Predicate<IMoodStrategy> testIfStrategyHasMoodId(String id) {
+        return (moodStrategy) -> moodStrategy.getMood().getId().equals(id);
     }
 
     private static class NullMoodStrategy implements IMoodStrategy {

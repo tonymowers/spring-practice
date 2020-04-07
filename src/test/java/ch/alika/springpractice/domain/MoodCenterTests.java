@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 import static ch.alika.springpractice.domain.Mood.NULL_MOOD;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -56,7 +57,11 @@ public class MoodCenterTests {
 
     @SuppressWarnings("SameParameterValue")
     private Optional<Mood> getMoodByName(String moodName) {
-        return moodCenter.getAvailableMoods().stream().filter(m -> m.getName().equals(moodName)).findFirst();
+        return moodCenter.getAvailableMoods().stream().filter(testIfHasMoodName(moodName)).findFirst();
+    }
+
+    private Predicate<Mood> testIfHasMoodName(String moodName) {
+        return m -> m.getName().equals(moodName);
     }
 
     @Test
