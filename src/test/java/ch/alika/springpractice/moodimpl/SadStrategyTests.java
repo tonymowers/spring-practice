@@ -2,10 +2,10 @@ package ch.alika.springpractice.moodimpl;
 
 import ch.alika.springpractice.domain.Mood;
 
-public class SadMoodStrategyTests extends AbstractMoodStrategyTests {
+public class SadStrategyTests extends AbstractMoodStrategyTests {
 
-    public SadMoodStrategyTests() {
-        super(new SadMoodStrategy());
+    public SadStrategyTests() {
+        super(new SadStrategy());
     }
 
     @Override

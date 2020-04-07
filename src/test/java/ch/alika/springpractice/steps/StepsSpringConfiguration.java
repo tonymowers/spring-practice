@@ -2,8 +2,8 @@ package ch.alika.springpractice.steps;
 
 import ch.alika.springpractice.domain.IMoodCenter;
 import ch.alika.springpractice.domain.MoodCenter;
-import ch.alika.springpractice.moodimpl.HappyMoodStrategy;
-import ch.alika.springpractice.moodimpl.SadMoodStrategy;
+import ch.alika.springpractice.moodimpl.HappyStrategy;
+import ch.alika.springpractice.moodimpl.SadStrategy;
 import ch.alika.springpractice.support.MoodChangingHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
@@ -29,8 +29,8 @@ public class StepsSpringConfiguration {
     @Scope(SCOPE_CUCUMBER_GLUE)
     public IMoodCenter moodCenter() {
         return new MoodCenter(Arrays.asList(
-                new HappyMoodStrategy(),
-                new SadMoodStrategy()
+                new HappyStrategy(),
+                new SadStrategy()
         ));
     }
 }
