@@ -4,7 +4,7 @@ import ch.alika.springpractice.domain.IGreetingSupplier;
 import ch.alika.springpractice.domain.IMoodStrategy;
 import ch.alika.springpractice.domain.Mood;
 
-public class HappyMood implements IMoodStrategy {
+public class HappyStrategy implements IMoodStrategy {
     private Mood MOOD = new Mood("HAPPY","happy");
 
     private IGreetingSupplier greetingSupplier = new GreetingSupplier();

@@ -4,8 +4,6 @@ import java.util.List;
 
 public interface IMoodCenter extends IGreetingSupplier {
 
-    void setAvailableMoods(List<Mood> moods);
-
     List<Mood> getAvailableMoods();
 
     Mood getDefaultMood();

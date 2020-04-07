@@ -3,7 +3,6 @@ package ch.alika.springpractice.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -22,12 +21,15 @@ public class MoodCenterTests {
 
     @BeforeEach
     public void setUp() {
-        moodCenter = new MoodCenter();
-        List<Mood> moods = new ArrayList<>(Arrays.asList(
-                HAPPY,
-                SAD));
-        moodCenter.setAvailableMoods(moods);
+        moodCenter = new MoodCenter(getFakeStrategies());
         moodCenter.setDefaultMoodById(HAPPY.getId());
+    }
+
+    private List<IMoodStrategy> getFakeStrategies() {
+        return Arrays.asList(
+                new FakeMoodStrategy(HAPPY, "Howdy!"),
+                new FakeMoodStrategy(SAD, "Go Aways :-(")
+        );
     }
 
 
@@ -84,11 +86,6 @@ public class MoodCenterTests {
 
     @Test
     public void whereGetDefaultMoodWhenNoDefaultSet() {
-        moodCenter = new MoodCenter();
-        List<Mood> moods = new ArrayList<>(Arrays.asList(
-                HAPPY,
-                SAD));
-        moodCenter.setAvailableMoods(moods);
         assertThat(moodCenter.getDefaultMood(),is(HAPPY));
     }
 
@@ -111,6 +108,29 @@ public class MoodCenterTests {
 
     @Test
     public void whereNullMoodGreetingRetrieved() {
+        moodCenter = new MoodCenter();
+        assertThat(moodCenter.getCurrentMood(),is(NULL_MOOD));
         assertThat(moodCenter.getGreeting(),is("Howdy!"));
+    }
+
+    private static class FakeMoodStrategy implements IMoodStrategy {
+
+        private final Mood mood;
+        private final String greeting;
+
+        public FakeMoodStrategy(Mood mood, String greeting) {
+            this.mood = mood;
+            this.greeting = greeting;
+        }
+
+        @Override
+        public Mood getMood() {
+            return mood;
+        }
+
+        @Override
+        public IGreetingSupplier getGreetingSupplier() {
+            return () -> greeting;
+        }
     }
 }

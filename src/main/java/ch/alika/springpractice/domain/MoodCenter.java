@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class MoodCenter implements IMoodCenter {
     private IMoodStrategy moodStrategy = new NullMoodStrategy();
@@ -12,8 +13,15 @@ public class MoodCenter implements IMoodCenter {
     private Mood currentMood;
     private List<Mood> moods = Collections.emptyList();
 
-    @Override
-    public void setAvailableMoods(List<Mood> moods) {
+    public MoodCenter(List<IMoodStrategy> strategies) {
+        setAvailableMoods(strategies.stream().map(IMoodStrategy::getMood).collect(Collectors.toList()));
+    }
+
+    public MoodCenter() {
+        this(Collections.emptyList());
+    }
+
+    private void setAvailableMoods(List<Mood> moods) {
         this.moods = moods;
         if (moods.isEmpty()) {
             defaultMood = Mood.NULL_MOOD;
