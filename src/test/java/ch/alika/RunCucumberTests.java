@@ -1,4 +1,4 @@
-package ch.alika.springpractice;
+package ch.alika;
 
 
 import io.cucumber.junit.Cucumber;
