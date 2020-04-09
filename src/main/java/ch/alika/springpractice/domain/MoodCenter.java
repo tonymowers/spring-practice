@@ -55,7 +55,7 @@ public class MoodCenter implements IMoodCenter {
 
     @Override
     public String getGreeting() {
-        return currentStrategy.getGreetingSupplier().getGreeting();
+        return currentStrategy.getGreeting();
     }
 
     private IMoodStrategy getStrategyById(String id) {
@@ -75,8 +75,8 @@ public class MoodCenter implements IMoodCenter {
         }
 
         @Override
-        public IGreetingSupplier getGreetingSupplier() {
-            return () -> "Howdy!";
+        public String getGreeting() {
+            return "Howdy!";
         }
     }
 }

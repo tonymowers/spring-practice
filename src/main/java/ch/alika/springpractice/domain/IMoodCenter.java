@@ -2,7 +2,7 @@ package ch.alika.springpractice.domain;
 
 import java.util.List;
 
-public interface IMoodCenter extends IGreetingSupplier {
+public interface IMoodCenter {
 
     List<Mood> getAvailableMoods();
 
@@ -15,4 +15,6 @@ public interface IMoodCenter extends IGreetingSupplier {
     void setCurrentMoodById(String id);
 
     void setCurrentMoodToDefaultMood();
+
+    String getGreeting();
 }

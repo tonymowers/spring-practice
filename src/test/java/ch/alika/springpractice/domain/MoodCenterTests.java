@@ -146,8 +146,8 @@ public class MoodCenterTests {
         }
 
         @Override
-        public IGreetingSupplier getGreetingSupplier() {
-            return () -> greeting;
+        public String getGreeting() {
+            return greeting;
         }
     }
 }

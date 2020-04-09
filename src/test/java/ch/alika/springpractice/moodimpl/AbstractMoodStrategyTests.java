@@ -33,6 +33,6 @@ public abstract class AbstractMoodStrategyTests {
     }
 
     private String getGreeting() {
-        return moodStrategy.getGreetingSupplier().getGreeting();
+        return moodStrategy.getGreeting();
     }
 }

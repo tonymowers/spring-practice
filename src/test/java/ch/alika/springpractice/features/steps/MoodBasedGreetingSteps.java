@@ -1,6 +1,6 @@
 package ch.alika.springpractice.features.steps;
 
-import ch.alika.springpractice.domain.IGreetingSupplier;
+import ch.alika.springpractice.domain.IMoodCenter;
 import ch.alika.springpractice.features.support.MoodChangingHelper;
 import io.cucumber.java.en.Then;
 
@@ -10,14 +10,14 @@ import static org.hamcrest.core.Is.is;
 
 public class MoodBasedGreetingSteps {
 
-    private final IGreetingSupplier greetingSupplier;
+    private final IMoodCenter moodCenter;
 
     public MoodBasedGreetingSteps(MoodChangingHelper helper) {
-        this.greetingSupplier = helper.getMoodController();
+        this.moodCenter = helper.getMoodController();
     }
 
     @Then("the greeting should be {string}")
     public void theGreetingShouldBe(String greeting) {
-        assertThat(greetingSupplier.getGreeting(),is(greeting));
+        assertThat(moodCenter.getGreeting(),is(greeting));
     }
 }

@@ -19,11 +19,11 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class MoodChangingSteps {
-    private final IMoodCenter moodController;
+    private final IMoodCenter moodCenter;
     private boolean exceptionExpected = false;
 
     public MoodChangingSteps(MoodChangingHelper helper) {
-        moodController = helper.getMoodController();
+        moodCenter = helper.getMoodController();
     }
 
     @DataTableType
@@ -38,7 +38,7 @@ public class MoodChangingSteps {
 
     @When("{mood_name} is the default mood")
     public void isTheDefaultMood(Mood mood) {
-        moodController.setDefaultMoodById(mood.getId());
+        moodCenter.setDefaultMoodById(mood.getId());
     }
 
     @Given("nothing is done about the mood")
@@ -47,32 +47,32 @@ public class MoodChangingSteps {
 
     @Then("the mood should be {mood_name}")
     public void theMoodShouldBe(Mood mood) {
-        assertThat(moodController.getCurrentMood(),is(mood));
+        assertThat(moodCenter.getCurrentMood(),is(mood));
     }
 
     @Then("the default mood should be {mood_name}")
     public void theDefaultMoodShouldBe(Mood mood) {
-        assertThat(moodController.getDefaultMood(),is(mood));
+        assertThat(moodCenter.getDefaultMood(),is(mood));
     }
 
     @Then("the mood should be unknown")
     public void theMoodShouldBeUnknown() {
-        assertThat(moodController.getCurrentMood(),is(NULL_MOOD));
+        assertThat(moodCenter.getCurrentMood(),is(NULL_MOOD));
     }
 
     @Then("the default mood should be unknown")
     public void theDefaultMoodShouldBeUnknown() {
-        assertThat(moodController.getCurrentMood(),is(NULL_MOOD));
+        assertThat(moodCenter.getCurrentMood(),is(NULL_MOOD));
     }
 
     @Given("the {mood_name} mood is chosen")
     public void theMoodIsChosen(Mood mood) {
-        moodController.setCurrentMoodById(mood.getId());
+        moodCenter.setCurrentMoodById(mood.getId());
     }
 
     @When("the default mood is chosen")
     public void theDefaultMoodIsChosen() {
-        moodController.setCurrentMoodToDefaultMood();
+        moodCenter.setCurrentMoodToDefaultMood();
     }
 
     @Then("a MoodNotFoundException should be thrown")
@@ -83,11 +83,11 @@ public class MoodChangingSteps {
     @When("an unknown mood is chosen")
     public void doNoMore() {
         if (exceptionExpected)
-            assertThrows(MoodNotFoundException.class, () -> moodController.setCurrentMoodById(NULL_MOOD.getId()));
+            assertThrows(MoodNotFoundException.class, () -> moodCenter.setCurrentMoodById(NULL_MOOD.getId()));
     }
 
     private Mood getMoodByName(String name) {
-        Optional<Mood> mood = moodController.getAvailableMoods().stream().filter(m -> m.getName().equals(name)).findFirst();
+        Optional<Mood> mood = moodCenter.getAvailableMoods().stream().filter(m -> m.getName().equals(name)).findFirst();
         return mood.orElseThrow(() -> new MoodNotFoundException(String.format("unable to find Mood with name = %s",name)));
     }
 
