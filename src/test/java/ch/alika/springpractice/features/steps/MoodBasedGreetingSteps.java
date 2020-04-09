@@ -1,7 +1,7 @@
-package ch.alika.springpractice.steps;
+package ch.alika.springpractice.features.steps;
 
 import ch.alika.springpractice.domain.IGreetingSupplier;
-import ch.alika.springpractice.support.MoodChangingHelper;
+import ch.alika.springpractice.features.support.MoodChangingHelper;
 import io.cucumber.java.en.Then;
 
 

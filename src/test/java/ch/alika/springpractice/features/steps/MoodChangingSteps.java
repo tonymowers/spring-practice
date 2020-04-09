@@ -1,16 +1,15 @@
-package ch.alika.springpractice.steps;
+package ch.alika.springpractice.features.steps;
 
 import ch.alika.springpractice.domain.IMoodCenter;
 import ch.alika.springpractice.domain.Mood;
 import ch.alika.springpractice.domain.MoodNotFoundException;
-import ch.alika.springpractice.support.MoodChangingHelper;
+import ch.alika.springpractice.features.support.MoodChangingHelper;
 import io.cucumber.java.DataTableType;
 import io.cucumber.java.ParameterType;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 

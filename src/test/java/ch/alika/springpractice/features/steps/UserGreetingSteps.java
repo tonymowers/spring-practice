@@ -1,4 +1,4 @@
-package ch.alika.springpractice.steps;
+package ch.alika.springpractice.features.steps;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;

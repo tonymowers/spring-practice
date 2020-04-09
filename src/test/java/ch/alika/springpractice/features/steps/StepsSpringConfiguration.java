@@ -1,10 +1,10 @@
-package ch.alika.springpractice.steps;
+package ch.alika.springpractice.features.steps;
 
 import ch.alika.springpractice.domain.IMoodCenter;
 import ch.alika.springpractice.domain.MoodCenter;
 import ch.alika.springpractice.moodimpl.HappyStrategy;
 import ch.alika.springpractice.moodimpl.SadStrategy;
-import ch.alika.springpractice.support.MoodChangingHelper;
+import ch.alika.springpractice.features.support.MoodChangingHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
