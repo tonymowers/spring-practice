@@ -4,9 +4,8 @@ import lombok.Value;
 
 @Value
 public class Mood {
-    String id;
-    String name;
-
     public static final Mood NULL_MOOD = new Mood("NULL", "NULL");
 
+    String id;
+    String name;
 }

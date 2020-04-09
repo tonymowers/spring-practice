@@ -1,4 +1,4 @@
-package ch.alika.springpractice.support;
+package ch.alika.springpractice.features.support;
 
 import ch.alika.springpractice.domain.IMoodCenter;
 

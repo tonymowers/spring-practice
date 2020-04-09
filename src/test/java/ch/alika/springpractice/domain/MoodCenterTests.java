@@ -3,10 +3,10 @@ package ch.alika.springpractice.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 import static ch.alika.springpractice.domain.Mood.NULL_MOOD;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -18,16 +18,21 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class MoodCenterTests {
     private static final Mood HAPPY = new Mood("happy", "happy");
     private static final Mood SAD = new Mood("sad", "sad");
+    public static final String HOWDY_GREETING = "Howdy!";
+    public static final String GO_AWAY_GREETING = "Go Aways :-(";
     private IMoodCenter moodCenter;
 
     @BeforeEach
     public void setUp() {
-        moodCenter = new MoodCenter();
-        List<Mood> moods = new ArrayList<>(Arrays.asList(
-                HAPPY,
-                SAD));
-        moodCenter.setAvailableMoods(moods);
+        moodCenter = new MoodCenter(getFakeStrategies());
         moodCenter.setDefaultMoodById(HAPPY.getId());
+    }
+
+    private List<IMoodStrategy> getFakeStrategies() {
+        return Arrays.asList(
+                new FakeMoodStrategy(HAPPY, HOWDY_GREETING),
+                new FakeMoodStrategy(SAD, GO_AWAY_GREETING)
+        );
     }
 
 
@@ -52,7 +57,11 @@ public class MoodCenterTests {
 
     @SuppressWarnings("SameParameterValue")
     private Optional<Mood> getMoodByName(String moodName) {
-        return moodCenter.getAvailableMoods().stream().filter(m -> m.getName().equals(moodName)).findFirst();
+        return moodCenter.getAvailableMoods().stream().filter(testIfHasMoodName(moodName)).findFirst();
+    }
+
+    private Predicate<Mood> testIfHasMoodName(String moodName) {
+        return m -> m.getName().equals(moodName);
     }
 
     @Test
@@ -84,11 +93,6 @@ public class MoodCenterTests {
 
     @Test
     public void whereGetDefaultMoodWhenNoDefaultSet() {
-        moodCenter = new MoodCenter();
-        List<Mood> moods = new ArrayList<>(Arrays.asList(
-                HAPPY,
-                SAD));
-        moodCenter.setAvailableMoods(moods);
         assertThat(moodCenter.getDefaultMood(),is(HAPPY));
     }
 
@@ -107,5 +111,43 @@ public class MoodCenterTests {
     @Test
     public void whereSetCurrentMoodToUnknownMood() {
         assertThrows(MoodNotFoundException.class, () -> moodCenter.setCurrentMoodById(NULL_MOOD.getId()));
+    }
+
+    @Test
+    public void whereNullMoodGreetingRetrieved() {
+        moodCenter = new MoodCenter();
+        assertThat(moodCenter.getCurrentMood(),is(NULL_MOOD));
+        assertThat(moodCenter.getGreeting(),is(HOWDY_GREETING));
+    }
+
+    @Test
+    public void whereGreetedByCurrentMood() {
+        moodCenter.setCurrentMoodById(HAPPY.getId());
+        assertThat(moodCenter.getGreeting(),is(HOWDY_GREETING));
+
+        moodCenter.setCurrentMoodById(SAD.getId());
+        assertThat(moodCenter.getGreeting(),is(GO_AWAY_GREETING));
+    }
+
+
+    private static class FakeMoodStrategy implements IMoodStrategy {
+
+        private final Mood mood;
+        private final String greeting;
+
+        public FakeMoodStrategy(Mood mood, String greeting) {
+            this.mood = mood;
+            this.greeting = greeting;
+        }
+
+        @Override
+        public Mood getMood() {
+            return mood;
+        }
+
+        @Override
+        public IGreetingSupplier getGreetingSupplier() {
+            return () -> greeting;
+        }
     }
 }
