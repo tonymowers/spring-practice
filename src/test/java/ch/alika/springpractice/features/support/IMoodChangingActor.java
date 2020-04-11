@@ -10,11 +10,11 @@ public interface IMoodChangingActor extends IActor {
 
     Mood getDefaultMood();
 
-    void setDefaultMoodById(String moodId);
+    void setDefaultMood(Mood mood);
 
     Mood getCurrentMood();
 
-    void setCurrentMoodById(String id);
+    void setCurrentMood(Mood mood);
 
     void setCurrentMoodToDefaultMood();
 }

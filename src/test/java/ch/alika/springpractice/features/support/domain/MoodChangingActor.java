@@ -13,6 +13,7 @@ public class MoodChangingActor implements IMoodChangingActor {
     public MoodChangingActor(MoodCenter moodCenter) {
         this.moodCenter = moodCenter;
     }
+    
     @Override
     public List<Mood> getAvailableMoods() {
         return moodCenter.getAvailableMoods();
@@ -24,8 +25,8 @@ public class MoodChangingActor implements IMoodChangingActor {
     }
 
     @Override
-    public void setDefaultMoodById(String moodId) {
-        moodCenter.setDefaultMoodById(moodId);
+    public void setDefaultMood(Mood mood) {
+        moodCenter.setDefaultMoodById(mood.getId());
     }
 
     @Override
@@ -34,8 +35,8 @@ public class MoodChangingActor implements IMoodChangingActor {
     }
 
     @Override
-    public void setCurrentMoodById(String id) {
-        moodCenter.setCurrentMoodById(id);
+    public void setCurrentMood(Mood mood) {
+        moodCenter.setCurrentMoodById(mood.getId());
     }
 
     @Override

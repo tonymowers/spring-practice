@@ -37,7 +37,7 @@ public class MoodChangingSteps {
 
     @When("{mood_name} is the default mood")
     public void choose_default_mood(Mood mood) {
-        actor.setDefaultMoodById(mood.getId());
+        actor.setDefaultMood(mood);
     }
 
     @Given("nothing is done about the mood")
@@ -46,7 +46,7 @@ public class MoodChangingSteps {
 
     @Given("the {mood_name} mood is chosen")
     public void choose_mood(Mood mood) {
-        actor.setCurrentMoodById(mood.getId());
+        actor.setCurrentMood(mood);
     }
 
     @Then("the mood should be {mood_name}")
@@ -82,7 +82,7 @@ public class MoodChangingSteps {
     @When("an unknown mood is chosen")
     public void choose_unknown_mood() {
         if (exceptionExpected)
-            assertThrows(MoodNotFoundException.class, () -> actor.setCurrentMoodById(NULL_MOOD.getId()));
+            assertThrows(MoodNotFoundException.class, () -> actor.setCurrentMood(NULL_MOOD));
     }
 
     private Mood getMoodByName(String name) {
