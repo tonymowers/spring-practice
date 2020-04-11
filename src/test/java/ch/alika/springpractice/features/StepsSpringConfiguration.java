@@ -1,10 +1,11 @@
-package ch.alika.springpractice.features.steps;
+package ch.alika.springpractice.features;
 
-import ch.alika.springpractice.domain.IMoodCenter;
+import ch.alika.springpractice.features.support.*;
 import ch.alika.springpractice.domain.MoodCenter;
+import ch.alika.springpractice.features.support.domain.GreetedActor;
+import ch.alika.springpractice.features.support.domain.MoodCenterActor;
 import ch.alika.springpractice.moodimpl.HappyStrategy;
 import ch.alika.springpractice.moodimpl.SadStrategy;
-import ch.alika.springpractice.features.support.MoodChangingHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,14 +21,19 @@ public class StepsSpringConfiguration {
 
     @Bean
     @Scope(SCOPE_CUCUMBER_GLUE)
-    public MoodChangingHelper shopperHelper(IMoodCenter moodCenter) {
-        log.debug("Instantiating MoodHelper");
-        return new MoodChangingHelper(moodCenter);
+    public IMoodCenterActor moodCenterActor(MoodCenter moodCenter) {
+        return new MoodCenterActor(moodCenter);
     }
 
     @Bean
     @Scope(SCOPE_CUCUMBER_GLUE)
-    public IMoodCenter moodCenter() {
+    public IGreetedActor greetedActor(MoodCenter moodCenter) {
+        return new GreetedActor(moodCenter);
+    }
+
+    @Bean
+    @Scope(SCOPE_CUCUMBER_GLUE)
+    public MoodCenter moodCenter() {
         return new MoodCenter(Arrays.asList(
                 new HappyStrategy(),
                 new SadStrategy()

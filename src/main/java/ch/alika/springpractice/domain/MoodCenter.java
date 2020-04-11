@@ -6,7 +6,7 @@ import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class MoodCenter implements IMoodCenter {
+public class MoodCenter {
     private static final IMoodStrategy NULL_STRATEGY = new NullMoodStrategy();
 
     private IMoodStrategy defaultStrategy;
@@ -23,37 +23,30 @@ public class MoodCenter implements IMoodCenter {
         this(Collections.emptyList());
     }
 
-    @Override
     public List<Mood> getAvailableMoods() {
         return moodStrategies.stream().map(IMoodStrategy::getMood).collect(Collectors.toList());
     }
 
-    @Override
     public Mood getDefaultMood() {
         return defaultStrategy.getMood();
     }
 
-    @Override
     public void setDefaultMoodById(String moodId) {
         defaultStrategy = getStrategyById(moodId);
     }
 
-    @Override
     public Mood getCurrentMood() {
         return Optional.ofNullable(currentStrategy).orElse(defaultStrategy).getMood();
     }
 
-    @Override
     public void setCurrentMoodById(String id) {
         this.currentStrategy = getStrategyById(id);
     }
 
-    @Override
     public void setCurrentMoodToDefaultMood() {
         this.currentStrategy = defaultStrategy;
     }
 
-    @Override
     public String getGreeting() {
         return currentStrategy.getGreeting();
     }

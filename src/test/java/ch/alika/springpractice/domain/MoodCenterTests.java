@@ -20,7 +20,7 @@ public class MoodCenterTests {
     private static final Mood SAD = new Mood("sad", "sad");
     public static final String HOWDY_GREETING = "Howdy!";
     public static final String GO_AWAY_GREETING = "Go Aways :-(";
-    private IMoodCenter moodCenter;
+    private MoodCenter moodCenter;
 
     @BeforeEach
     public void setUp() {

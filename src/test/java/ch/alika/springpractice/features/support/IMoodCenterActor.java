@@ -1,8 +1,10 @@
-package ch.alika.springpractice.domain;
+package ch.alika.springpractice.features.support;
+
+import ch.alika.springpractice.domain.Mood;
 
 import java.util.List;
 
-public interface IMoodCenter {
+public interface IMoodCenterActor {
 
     List<Mood> getAvailableMoods();
 
@@ -15,6 +17,4 @@ public interface IMoodCenter {
     void setCurrentMoodById(String id);
 
     void setCurrentMoodToDefaultMood();
-
-    String getGreeting();
 }
