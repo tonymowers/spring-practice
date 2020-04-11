@@ -4,7 +4,7 @@ import ch.alika.springpractice.domain.Mood;
 
 import java.util.List;
 
-public interface IMoodChangingActor {
+public interface IMoodChangingActor extends IActor {
 
     List<Mood> getAvailableMoods();
 

@@ -1,5 +1,5 @@
 package ch.alika.springpractice.features.support;
 
-public interface IGreetedActor {
+public interface IGreetedActor extends IActor {
     String getGreeting();
 }
