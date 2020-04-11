@@ -2,15 +2,15 @@ package ch.alika.springpractice.features.support.domain;
 
 import ch.alika.springpractice.domain.Mood;
 import ch.alika.springpractice.domain.MoodCenter;
-import ch.alika.springpractice.features.support.IMoodCenterActor;
+import ch.alika.springpractice.features.support.IMoodChangingActor;
 
 import java.util.List;
 
-public class MoodCenterActor implements IMoodCenterActor {
+public class MoodChangingActor implements IMoodChangingActor {
 
     private final MoodCenter moodCenter;
 
-    public MoodCenterActor(MoodCenter moodCenter) {
+    public MoodChangingActor(MoodCenter moodCenter) {
         this.moodCenter = moodCenter;
     }
     @Override

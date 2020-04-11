@@ -3,7 +3,7 @@ package ch.alika.springpractice.features;
 import ch.alika.springpractice.features.support.*;
 import ch.alika.springpractice.domain.MoodCenter;
 import ch.alika.springpractice.features.support.domain.GreetedActor;
-import ch.alika.springpractice.features.support.domain.MoodCenterActor;
+import ch.alika.springpractice.features.support.domain.MoodChangingActor;
 import ch.alika.springpractice.moodimpl.HappyStrategy;
 import ch.alika.springpractice.moodimpl.SadStrategy;
 import lombok.extern.slf4j.Slf4j;
@@ -21,8 +21,8 @@ public class StepsSpringConfiguration {
 
     @Bean
     @Scope(SCOPE_CUCUMBER_GLUE)
-    public IMoodCenterActor moodCenterActor(MoodCenter moodCenter) {
-        return new MoodCenterActor(moodCenter);
+    public IMoodChangingActor moodCenterActor(MoodCenter moodCenter) {
+        return new MoodChangingActor(moodCenter);
     }
 
     @Bean

@@ -8,14 +8,14 @@ import static org.hamcrest.core.Is.is;
 
 public class MoodBasedGreetingSteps {
 
-    private final IGreetedActor greetedActor;
+    private final IGreetedActor actor;
 
     public MoodBasedGreetingSteps(IGreetedActor greetedActor) {
-        this.greetedActor = greetedActor;
+        this.actor = greetedActor;
     }
 
     @Then("the greeting should be {string}")
-    public void theGreetingShouldBe(String greeting) {
-        assertThat(greetedActor.getGreeting(),is(greeting));
+    public void should_be_greeted_by(String greeting) {
+        assertThat(actor.getGreeting(),is(greeting));
     }
 }
