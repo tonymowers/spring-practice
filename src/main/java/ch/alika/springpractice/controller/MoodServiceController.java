@@ -27,19 +27,24 @@ public class MoodServiceController {
     @RequestMapping(value = "/mood/overview", method = RequestMethod.GET)
     public ResponseEntity<MoodOverviewDTO> getMoodOverview() {
         log.debug("Mood overview GET");
+
         return new ResponseEntity<>(MoodOverviewDTO.from(moodService.getMoodOverview()), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/mood/current", method = RequestMethod.GET)
     public ResponseEntity<Mood> getCurrentMood() {
         log.debug("Mood current GET");
+
         return new ResponseEntity<>(moodService.getCurrentMood(), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/mood/current", method = RequestMethod.PUT)
-    public ResponseEntity<String> updateCurrentMood(@RequestBody MoodChangeRequestDTO moodChange) {
+    public ResponseEntity<String> updateCurrentMood(
+            @RequestBody MoodChangeRequestDTO moodChange
+    ) {
         final String newMoodId = moodChange.getNewMoodId();
         log.debug(String.format("Mood current PUT newMoodId = [%s]", newMoodId));
+
         moodService.setCurrentMoodById(newMoodId);
         return new ResponseEntity<>("Current mood updated successfully", HttpStatus.OK);
     }
