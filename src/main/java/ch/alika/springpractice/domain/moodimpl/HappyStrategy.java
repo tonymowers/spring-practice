@@ -1,4 +1,4 @@
-package ch.alika.springpractice.moodimpl;
+package ch.alika.springpractice.domain.moodimpl;
 
 import ch.alika.springpractice.domain.IMoodStrategy;
 import ch.alika.springpractice.domain.Mood;

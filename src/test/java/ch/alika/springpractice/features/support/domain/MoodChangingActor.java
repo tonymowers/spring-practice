@@ -13,7 +13,7 @@ public class MoodChangingActor implements IMoodChangingActor {
     public MoodChangingActor(MoodCenter moodCenter) {
         this.moodCenter = moodCenter;
     }
-    
+
     @Override
     public List<Mood> getAvailableMoods() {
         return moodCenter.getAvailableMoods();
