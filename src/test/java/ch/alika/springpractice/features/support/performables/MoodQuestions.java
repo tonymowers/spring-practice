@@ -1,7 +1,7 @@
 package ch.alika.springpractice.features.support.performables;
 
 import ch.alika.springpractice.domain.Mood;
-import ch.alika.springpractice.features.support.screenplay.IActorQuestion;
+import ch.alika.screenplay.IActorQuestion;
 import ch.alika.springpractice.features.support.actor.IMoodChanger;
 
 import java.util.List;

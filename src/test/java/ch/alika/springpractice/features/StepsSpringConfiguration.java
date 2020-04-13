@@ -1,13 +1,13 @@
 package ch.alika.springpractice.features;
 
 import ch.alika.springpractice.domain.MoodCenter;
+import ch.alika.springpractice.domain.moodimpl.HappyStrategy;
+import ch.alika.springpractice.domain.moodimpl.SadStrategy;
 import ch.alika.springpractice.features.support.actor.IGreetingGetter;
 import ch.alika.springpractice.features.support.actor.IMoodChanger;
 import ch.alika.springpractice.features.support.actor.domain.GreetedActor;
 import ch.alika.springpractice.features.support.actor.domain.MoodChangingActor;
-import ch.alika.springpractice.features.support.screenplay.Actor;
-import ch.alika.springpractice.moodimpl.HappyStrategy;
-import ch.alika.springpractice.moodimpl.SadStrategy;
+import ch.alika.screenplay.Actor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

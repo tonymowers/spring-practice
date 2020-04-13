@@ -1,7 +1,7 @@
 package ch.alika.springpractice.features.support.performables;
 
 import ch.alika.springpractice.domain.Mood;
-import ch.alika.springpractice.features.support.screenplay.IActorTask;
+import ch.alika.screenplay.IActorTask;
 import ch.alika.springpractice.features.support.actor.IMoodChanger;
 
 public class MoodTasks {

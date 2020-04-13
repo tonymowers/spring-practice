@@ -3,7 +3,7 @@ package ch.alika.springpractice.features.steps;
 import ch.alika.springpractice.domain.Mood;
 import ch.alika.springpractice.domain.MoodNotFoundException;
 import ch.alika.springpractice.features.support.actor.IMoodChanger;
-import ch.alika.springpractice.features.support.screenplay.Actor;
+import ch.alika.screenplay.Actor;
 import io.cucumber.java.DataTableType;
 import io.cucumber.java.ParameterType;
 

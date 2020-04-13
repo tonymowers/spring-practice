@@ -2,7 +2,7 @@ package ch.alika.springpractice.features.steps;
 
 import ch.alika.springpractice.domain.Mood;
 import ch.alika.springpractice.domain.MoodNotFoundException;
-import ch.alika.springpractice.features.support.screenplay.Actor;
+import ch.alika.screenplay.Actor;
 import ch.alika.springpractice.features.support.actor.IMoodChanger;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;

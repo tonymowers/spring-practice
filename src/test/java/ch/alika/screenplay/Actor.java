@@ -1,4 +1,4 @@
-package ch.alika.springpractice.features.support.screenplay;
+package ch.alika.screenplay;
 
 public class Actor<T> {
     private T performer;
