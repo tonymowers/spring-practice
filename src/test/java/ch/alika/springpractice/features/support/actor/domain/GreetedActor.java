@@ -1,9 +1,9 @@
-package ch.alika.springpractice.features.support.domain;
+package ch.alika.springpractice.features.support.actor.domain;
 
 import ch.alika.springpractice.domain.MoodCenter;
-import ch.alika.springpractice.features.support.IGreetedActor;
+import ch.alika.springpractice.features.support.actor.IGreetingGetter;
 
-public class GreetedActor implements IGreetedActor {
+public class GreetedActor implements IGreetingGetter {
 
     private final MoodCenter moodCenter;
 

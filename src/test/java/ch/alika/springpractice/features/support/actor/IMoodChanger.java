@@ -1,10 +1,10 @@
-package ch.alika.springpractice.features.support;
+package ch.alika.springpractice.features.support.actor;
 
 import ch.alika.springpractice.domain.Mood;
 
 import java.util.List;
 
-public interface IMoodChangingActor extends IActor {
+public interface IMoodChanger extends IActor {
 
     List<Mood> getAvailableMoods();
 
