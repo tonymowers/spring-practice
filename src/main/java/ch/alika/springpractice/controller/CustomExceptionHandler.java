@@ -14,10 +14,10 @@ import java.util.Date;
 
 @RestControllerAdvice
 @RestController
-public class CustomizedExceptionHandler extends ResponseEntityExceptionHandler {
+public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(Exception.class)
-    public final ResponseEntity<Object> handleAllExceptions(Exception ex, WebRequest request) {
+    public final ResponseEntity<ExceptionResponseDTO> handleAllExceptions(Exception ex, WebRequest request) {
         ExceptionResponseDTO exceptionResponse = new ExceptionResponseDTO(
                 new Date(),ex.getMessage(),
                 request.getDescription(false));
@@ -26,7 +26,7 @@ public class CustomizedExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(MoodNotFoundException.class)
-    public final ResponseEntity<Object> handleObjectNotFouncException(Exception ex, WebRequest request) {
+    public final ResponseEntity<ExceptionResponseDTO> handleMoodNotFoundException(MoodNotFoundException ex, WebRequest request) {
         ExceptionResponseDTO exceptionResponse = new ExceptionResponseDTO(
                 new Date(),ex.getMessage(),
                 request.getDescription(false));
