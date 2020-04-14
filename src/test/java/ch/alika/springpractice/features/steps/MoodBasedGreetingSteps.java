@@ -16,7 +16,7 @@ public class MoodBasedGreetingSteps  {
     }
 
     @Then("the greeting should be {string}")
-    private void should_be_greeted_by(String expectedGreeting) {
+    public void should_be_greeted_by(String expectedGreeting) {
         assertThat(actor.getGreeting(),equalTo(expectedGreeting));
     }
 
