@@ -3,11 +3,10 @@ package ch.alika.springpractice.features;
 import ch.alika.springpractice.domain.MoodCenter;
 import ch.alika.springpractice.domain.moodimpl.HappyStrategy;
 import ch.alika.springpractice.domain.moodimpl.SadStrategy;
-import ch.alika.springpractice.features.support.actor.IGreetingGetter;
-import ch.alika.springpractice.features.support.actor.IMoodChanger;
-import ch.alika.springpractice.features.support.actor.domain.GreetedActor;
+import ch.alika.springpractice.features.support.actor.IGreetingGetterActor;
+import ch.alika.springpractice.features.support.actor.IMoodChangerActor;
+import ch.alika.springpractice.features.support.actor.domain.GreetingGetterActor;
 import ch.alika.springpractice.features.support.actor.domain.MoodChangingActor;
-import ch.alika.screenplay.Actor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,14 +22,14 @@ public class StepsSpringConfiguration {
 
     @Bean
     @Scope(SCOPE_CUCUMBER_GLUE)
-    public Actor<IMoodChanger> moodCenterActor(MoodCenter moodCenter) {
-        return wrapActor(new MoodChangingActor(moodCenter));
+    public IMoodChangerActor moodChanger(MoodCenter moodCenter) {
+        return new MoodChangingActor(moodCenter);
     }
 
     @Bean
     @Scope(SCOPE_CUCUMBER_GLUE)
-    public Actor<IGreetingGetter> greetedActor(MoodCenter moodCenter) {
-        return wrapActor(new GreetedActor(moodCenter));
+    public IGreetingGetterActor greetingGetter(MoodCenter moodCenter) {
+        return new GreetingGetterActor(moodCenter);
     }
 
     @Bean
@@ -42,7 +41,4 @@ public class StepsSpringConfiguration {
         ));
     }
 
-    private <T> Actor<T> wrapActor(T actor) {
-        return new Actor<>(actor);
-    }
 }

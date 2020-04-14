@@ -2,21 +2,18 @@ package ch.alika.springpractice.features.steps;
 
 import ch.alika.springpractice.domain.Mood;
 import ch.alika.springpractice.domain.MoodNotFoundException;
-import ch.alika.springpractice.features.support.actor.IMoodChanger;
-import ch.alika.screenplay.Actor;
+import ch.alika.springpractice.features.support.actor.IMoodChangerActor;
 import io.cucumber.java.DataTableType;
 import io.cucumber.java.ParameterType;
 
 import java.util.Map;
 import java.util.Optional;
 
-import static ch.alika.springpractice.features.support.performables.MoodQuestions.AvailableMoods;
-
 public class ParameterTypes {
-    private final Actor<IMoodChanger> actor;
+    private final IMoodChangerActor actor;
 
-    public ParameterTypes(Actor<IMoodChanger> actor) {
-        this.actor = actor;
+    public ParameterTypes(IMoodChangerActor moodChanger) {
+        this.actor = moodChanger;
     }
 
     @DataTableType
@@ -30,7 +27,7 @@ public class ParameterTypes {
     }
 
     private Mood getMoodByName(String name) {
-        Optional<Mood> mood = actor.shouldSee(AvailableMoods()).stream().filter(m -> m.getName().equals(name)).findFirst();
+        Optional<Mood> mood = actor.getAvailableMoods().stream().filter(m -> m.getName().equals(name)).findFirst();
         return mood.orElseThrow(() -> new MoodNotFoundException(String.format("unable to find Mood with name = %s",name)));
     }
 }

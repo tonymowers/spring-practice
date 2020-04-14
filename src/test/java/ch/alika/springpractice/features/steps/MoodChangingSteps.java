@@ -2,30 +2,27 @@ package ch.alika.springpractice.features.steps;
 
 import ch.alika.springpractice.domain.Mood;
 import ch.alika.springpractice.domain.MoodNotFoundException;
-import ch.alika.screenplay.Actor;
-import ch.alika.springpractice.features.support.actor.IMoodChanger;
+import ch.alika.springpractice.features.support.actor.IMoodChangerActor;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 import static ch.alika.springpractice.domain.Mood.NULL_MOOD;
-import static ch.alika.springpractice.features.support.performables.MoodQuestions.*;
-import static ch.alika.springpractice.features.support.performables.MoodTasks.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class MoodChangingSteps {
-    private final Actor<IMoodChanger> actor;
+    private final IMoodChangerActor actor;
     private boolean exceptionExpected = false;
 
-    public MoodChangingSteps(Actor<IMoodChanger> actor) {
-        this.actor = actor;
+    public MoodChangingSteps(IMoodChangerActor moodChanger) {
+        this.actor = moodChanger;
     }
 
     @When("{mood_name} is the default mood")
     public void choose_default_mood(Mood mood) {
-        actor.attemptsTo(SetDefaultMoodTo(mood));
+        actor.setDefaultMood(mood);
     }
 
     @Given("nothing is done about the mood")
@@ -34,32 +31,33 @@ public class MoodChangingSteps {
 
     @Given("the {mood_name} mood is chosen")
     public void choose_mood(Mood mood) {
-        actor.wasAbleTo(SetCurrentMoodTo(mood));
+        actor.setCurrentMood(mood);
     }
 
     @Then("the mood should be {mood_name}")
     public void should_have_mood(Mood mood) {
-        assertThat(actor.shouldSee(CurrentMood()),is(mood));
+
+        assertThat(actor.getCurrentMood(),is(mood));
     }
 
     @Then("the default mood should be {mood_name}")
     public void should_have_default_mood(Mood mood) {
-        assertThat(actor.shouldSee(DefaultMood()),is(mood));
+        assertThat(actor.getDefaultMood(),is(mood));
     }
 
     @Then("the mood should be unknown")
     public void should_have_unknown_mood() {
-        assertThat(actor.shouldSee(CurrentMood()),is(NULL_MOOD));
+        assertThat(actor.getCurrentMood(),is(NULL_MOOD));
     }
 
     @Then("the default mood should be unknown")
     public void should_have_unknown_default_mood() {
-        assertThat(actor.shouldSee(CurrentMood()),is(NULL_MOOD));
+        assertThat(actor.getCurrentMood(),is(NULL_MOOD));
     }
 
     @When("the default mood is chosen")
     public void choose_default_mood() {
-        actor.attemptsTo(SetMoodToDefaultMood());
+        actor.setCurrentMoodToDefaultMood();
     }
 
     @Then("a MoodNotFoundException should be thrown")
@@ -70,7 +68,7 @@ public class MoodChangingSteps {
     @When("an unknown mood is chosen")
     public void choose_unknown_mood() {
         if (exceptionExpected)
-            assertThrows(MoodNotFoundException.class, () -> actor.attemptsTo(SetCurrentMoodTo(NULL_MOOD)));
+            assertThrows(MoodNotFoundException.class, () -> actor.setCurrentMood(NULL_MOOD));
     }
 
 }

@@ -2,11 +2,11 @@ package ch.alika.springpractice.features.support.actor.domain;
 
 import ch.alika.springpractice.domain.Mood;
 import ch.alika.springpractice.domain.MoodCenter;
-import ch.alika.springpractice.features.support.actor.IMoodChanger;
+import ch.alika.springpractice.features.support.actor.IMoodChangerActor;
 
 import java.util.List;
 
-public class MoodChangingActor implements IMoodChanger {
+public class MoodChangingActor implements IMoodChangerActor {
 
     private final MoodCenter moodCenter;
 
