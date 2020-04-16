@@ -22,6 +22,7 @@
         <junit.jupiter.version>5.5.1</junit.jupiter.version>
         <de.monochromata.cucumber>4.0.26</de.monochromata.cucumber>
         <docker.repository>docker.io/tonymowers/${project.artifactId}</docker.repository>
+        <frontend-maven-plugin.nodeVersion>v11.15.0</frontend-maven-plugin.nodeVersion>
     </properties>
 
     <dependencies>
@@ -143,7 +144,7 @@
                 <artifactId>frontend-maven-plugin</artifactId>
                 <version>1.9.1</version>
                 <configuration>
-                    <nodeVersion>v9.11.2</nodeVersion>
+                    <nodeVersion>${frontend-maven-plugin.nodeVersion}</nodeVersion>
                     <installDirectory>target</installDirectory>
                 </configuration>
                 <executions>
