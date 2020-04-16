@@ -22,7 +22,7 @@ public class ParameterTypes {
     }
 
     @ParameterType(value = "\"(.*)\"", name = "mood_name")
-    public Mood mood(String moodName) {
+    public Mood mood_name(String moodName) {
         return getMoodByName(moodName);
     }
 
