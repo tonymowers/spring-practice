@@ -1,6 +1,5 @@
-package ch.alika.springpractice.moodimpl;
+package ch.alika.springpractice.domain.moodimpl;
 
-import ch.alika.springpractice.domain.IGreetingSupplier;
 import ch.alika.springpractice.domain.IMoodStrategy;
 import ch.alika.springpractice.domain.Mood;
 
@@ -13,7 +12,7 @@ public class SadStrategy implements IMoodStrategy {
     }
 
     @Override
-    public IGreetingSupplier getGreetingSupplier() {
-        return () -> "Please go away :-(";
+    public String getGreeting() {
+        return "Please go away :-(";
     }
 }

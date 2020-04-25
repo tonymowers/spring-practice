@@ -1,23 +1,23 @@
 package ch.alika.springpractice.features.steps;
 
-import ch.alika.springpractice.domain.IGreetingSupplier;
-import ch.alika.springpractice.features.support.MoodChangingHelper;
+import ch.alika.springpractice.features.support.actor.IGreetingGetterActor;
 import io.cucumber.java.en.Then;
 
+import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assert.assertThat;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.Is.is;
+@SuppressWarnings("unused")
+public class MoodBasedGreetingSteps  {
 
-public class MoodBasedGreetingSteps {
+    private final IGreetingGetterActor actor;
 
-    private final IGreetingSupplier greetingSupplier;
-
-    public MoodBasedGreetingSteps(MoodChangingHelper helper) {
-        this.greetingSupplier = helper.getMoodController();
+    public MoodBasedGreetingSteps(IGreetingGetterActor actor) {
+        this.actor = actor;
     }
 
     @Then("the greeting should be {string}")
-    public void theGreetingShouldBe(String greeting) {
-        assertThat(greetingSupplier.getGreeting(),is(greeting));
+    public void should_be_greeted_by(String expectedGreeting) {
+        assertThat(actor.getGreeting(),equalTo(expectedGreeting));
     }
+
 }

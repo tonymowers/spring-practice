@@ -1,5 +1,6 @@
 package ch.alika.springpractice.features.steps;
 
+import ch.alika.springpractice.features.StepsSpringConfiguration;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
