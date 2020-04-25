@@ -11,7 +11,7 @@ public class MoodCenter {
 
     private IMoodStrategy defaultStrategy;
     private IMoodStrategy currentStrategy;
-    private List<IMoodStrategy> moodStrategies;
+    final private List<IMoodStrategy> moodStrategies;
 
     public MoodCenter(List<IMoodStrategy> strategies) {
         this.moodStrategies = Optional.ofNullable(strategies).orElse(Collections.emptyList());

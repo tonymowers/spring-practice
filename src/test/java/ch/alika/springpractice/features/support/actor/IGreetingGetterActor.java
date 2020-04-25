@@ -1,6 +1,9 @@
 package ch.alika.springpractice.features.support.actor;
 
-public interface IGreetingGetterActor extends IActor {
+import ch.alika.screenplay.ActorInterface;
+
+@ActorInterface
+public interface IGreetingGetterActor {
 
     /*
        Questions

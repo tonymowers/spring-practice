@@ -1,10 +1,12 @@
 package ch.alika.springpractice.features.support.actor;
 
+import ch.alika.screenplay.ActorInterface;
 import ch.alika.springpractice.domain.Mood;
 
 import java.util.List;
 
-public interface IMoodChangerActor extends IActor {
+@ActorInterface
+public interface IMoodChangerActor {
 
     /*
       Tasks
