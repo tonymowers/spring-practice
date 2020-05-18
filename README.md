@@ -12,6 +12,18 @@ mvn spring-boot:run
 
 To use the application open your web browser to  [localhost:8080](http://localhost:8080)
 
+## Invoking REST API
+
+Getting mood overview:
+```
+curl -X GET http://localhost:8080/mood/overview
+```
+
+Setting current mood:
+```
+curl -X PUT http://localhost:8080/mood/current --header "Content-Type: application/json" --data "{ \"newMoodId\" : \"HAPPY\" }"
+```
+
 ## Develop Frontend
 
 With the backend already running execute:
