@@ -6,7 +6,6 @@ import io.cucumber.java.en.Then;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
 
-@SuppressWarnings("unused")
 public class MoodBasedGreetingSteps  {
 
     private final IGreetingGetterActor actor;

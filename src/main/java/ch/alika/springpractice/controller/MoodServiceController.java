@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MoodServiceController {
 
-    private IMoodService moodService;
+    private final IMoodService moodService;
 
     @Autowired
     public MoodServiceController(IMoodService moodService) {
